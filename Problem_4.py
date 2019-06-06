@@ -28,7 +28,7 @@ def lpn(n):
                 break
             
     print 'The largest palindrome made from the product of two ' + str(n) + '-digit numbers is ' + str(largest) + '.'
-    print 'This was calculated in ' + str(time.time() - start) + ' seconds.'
+    print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
     
 #Run the program
 n = 3
