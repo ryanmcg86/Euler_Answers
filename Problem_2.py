@@ -9,7 +9,7 @@ Link: https://projecteuler.net/problem=2'''
 import time
 
 #Run function
-def run(n):
+def EvenFibSum(n):
     start = time.time()
     fibSeq = [1, 2]
     sumOfTerms = 0
@@ -29,4 +29,4 @@ def run(n):
 
 #Run the program
 n = 4000000
-run(n)
+EvenFibSum(n)
