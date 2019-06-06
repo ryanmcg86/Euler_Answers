@@ -35,7 +35,7 @@ def lpf(n):
             result = i
             break
     print 'The largest prime factor of ' + str(n) + ' is ' + str(result) + '.'
-    print 'This was calculated in ' + str(time.time() - start) + ' seconds.'
+    print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
     
 #Run the program
 n = 600851475143
