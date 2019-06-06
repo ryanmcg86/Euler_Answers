@@ -17,5 +17,7 @@ def run(n):
         multiples.add(i)
     print 'The sum of all the multiples of 3 or 5 below ' + str(n) + ' is ' + str(sum(multiples)) + '.'
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
-    
-run(1000)
+
+#Run the program
+n = 1000
+run(n)
