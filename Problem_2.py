@@ -8,7 +8,7 @@ Link: https://projecteuler.net/problem=2'''
 #Imports
 import time
 
-#Run function
+#Sum of even fibonacci numbers function
 def EvenFibSum(n):
     start = time.time()
     fibSeq = [1, 2]
