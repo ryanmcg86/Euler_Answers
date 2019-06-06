@@ -21,7 +21,7 @@ def isPrime(n):
     return True
 
 #Run function
-def run(n):
+def lpf(n):
     start = time.time()
     result = 1
     while n % 2 == 0:
@@ -39,4 +39,4 @@ def run(n):
     
 #Run the program
 n = 600851475143
-run(n)
+lpf(n)
