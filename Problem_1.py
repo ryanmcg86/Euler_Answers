@@ -7,17 +7,23 @@ Link: https://projecteuler.net/problem=1'''
 #Imports
 import time
 
-#Run function
-def SumOfMults(n):
+#Sum of multiples (of 3 and 5) function
+def SumOfMults(n, mults):
     start = time.time()
     multiples = set()
-    for i in range(0, n, 3):
-        multiples.add(i)
-    for i in range(0, n, 5):
-        multiples.add(i)
-    print 'The sum of all the multiples of 3 or 5 below ' + str(n) + ' is ' + str(sum(multiples)) + '.'
+    strnums = ''
+    for i in range(0, len(mults)):
+        if i != len(mults) - 1:
+            strnums += str(mults[i]) + ', '
+        else:
+            strnums = strnums[:-2]
+            strnums += ' and ' + str(mults[i])
+        for j in range(0, n, mults[i]):
+            multiples.add(j)
+    print 'The sum of all the multiples of ' + strnums + ' below ' + str(n) + ' is ' + str(sum(multiples)) + '.'
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
 
 #Run the program
 n = 1000
-SumOfMults(n)
+mults = [3, 5]
+SumOfMults(n, mults)
