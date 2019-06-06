@@ -25,7 +25,7 @@ def EvenFibSum(n):
         sumOfTerms += fibSeq[i]
         
     print 'The sum of the even-valued terms in the Fibonacci sequence below ' + str(n) + ' is ' + str(sumOfTerms) + '.'
-    print 'This was calculated in ' + str(time.time() - start) + ' seconds.'
+    print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
 
 #Run the program
 n = 4000000
