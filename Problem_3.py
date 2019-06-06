@@ -20,7 +20,7 @@ def isPrime(n):
         i += 6
     return True
 
-#Run function
+#Largest prime factor function
 def lpf(n):
     start = time.time()
     result = 1
