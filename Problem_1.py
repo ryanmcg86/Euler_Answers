@@ -8,7 +8,7 @@ Link: https://projecteuler.net/problem=1'''
 import time
 
 #Run function
-def run(n):
+def SumOfMults(n):
     start = time.time()
     multiples = set()
     for i in range(0, n, 3):
@@ -20,4 +20,4 @@ def run(n):
 
 #Run the program
 n = 1000
-run(n)
+SumOfMults(n)
