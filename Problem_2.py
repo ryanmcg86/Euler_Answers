@@ -27,5 +27,6 @@ def run(n):
     print 'The sum of the even-valued terms in the Fibonacci sequence below ' + str(n) + ' is ' + str(sumOfTerms) + '.'
     print 'This was calculated in ' + str(time.time() - start) + ' seconds.'
 
-    
-run(4000000)
+#Run the program
+n = 4000000
+run(n)
