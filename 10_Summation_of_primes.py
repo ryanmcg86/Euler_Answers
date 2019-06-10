@@ -25,7 +25,7 @@ def isPrime(n):
 def findSum(num):
     start = time.time()
     sop = 0
-    for i in range(2, 2000000):
+    for i in range(2, num):
         if isPrime(i):
             sop += i
     
