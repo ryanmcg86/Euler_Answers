@@ -28,7 +28,8 @@ def diff(n):
     start = time.time()
     diff = squareOfsum(n) - sumOfsquares(n)
     
-    print 'The difference between the sum of the squares of the first ' + str(n) + ' natural numbers and the square of the sum is ' + str(diff) + '.'
+    print 'The difference between the sum of the squares of the first ' + str(n) 
+    print ' natural numbers and the square of the sum is ' + str(diff) + '.'
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
     
 #Run the program
