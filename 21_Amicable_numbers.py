@@ -21,7 +21,9 @@ def d(n):
     
 #Build an isAmicable function
 def isAmicable(n):
-    return d(d(n)) == n and d(n) != n
+    num1 = d(n)
+    num2 = d(num1)
+    return num2 == n and num1 != n
 
 #Solution function
 def Solution(num):
