@@ -8,7 +8,6 @@ Link: https://projecteuler.net/problem=20'''
 
 #Imports
 import time
-import datetime
 
 #Build a sum-of-factorial-digits function
 def sumOfFactorialDigits(num):
