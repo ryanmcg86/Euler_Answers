@@ -9,7 +9,6 @@ Link: https://projecteuler.net/problem=21'''
 
 #Imports
 import time
-import datetime
 
 #Build a d(n) function which returns the sum
 #of proper divisors of n
