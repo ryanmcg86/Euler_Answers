@@ -38,13 +38,13 @@ def isPrime(n):
 #nthPrime function
 def nthPrime(n):
     start = time.time()
-    count = 0
-    i = 2
-    while count < 10001:
+    count = 1
+    i = 3
+    while count < n:
         if isPrime(i):
             count += 1
-        if count < 10001:
-            i += 1
+        if count < n:
+            i += 2
     
     suff = buildSuffix(n)
     
@@ -52,5 +52,5 @@ def nthPrime(n):
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
     
 #Find the 10001st prime
-n = 100001
+n = 10001
 nthPrime(n)
