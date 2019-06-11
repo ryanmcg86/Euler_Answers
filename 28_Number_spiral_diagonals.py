@@ -27,10 +27,10 @@ def spiralSum(num):
 def answer(num):
     start = time.time()
     
-    ans = spiralSum(num)
+    ans = str(spiralSum(num))
     grid = str(num) + ' by ' + str(num)
     
-    print 'The sum of the numbers on the diagonals in a ' + grid + ' spiral is ' + str(ans) + '.'
+    print 'The sum of the numbers on the diagonals in a ' + grid + ' spiral is ' + ans + '.'
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
     
 #Run the program
