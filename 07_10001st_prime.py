@@ -38,8 +38,8 @@ def isPrime(n):
 #nthPrime function
 def nthPrime(n):
     start = time.time()
-    count = 1
-    i = 3
+    count = 2
+    i = 5
     while count < n:
         if isPrime(i):
             count += 1
