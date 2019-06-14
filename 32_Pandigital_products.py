@@ -13,21 +13,13 @@ import time
 
 #Build a sum-of-products function
 def sumOfProds(digits):
-	start = time.time()
-
-	total = []
-	baseperm = []
-	for i in range(1, digits + 1):
-		baseperm.append(i)
-	perm = permutations(baseperm)
-	perms = []
-	for i in list(perm):
-		perms.append(i)
+	start    = time.time()
+	total    = []
+	baseperm = list(range(1, digits + 1))
+	perms = list(permutations(baseperm))
 
 	for i in range(0, len(perms)):
-		perm = ''
-		for j in range(0, len(perms[i])):
-			perm += str(perms[i][j])
+		perm = ''.join(str(j) for j in perms[i])
 		for j in range(2, len(perms[i])):
 			for k in range(1, j):
 				num1 = int(perm[0:k])
