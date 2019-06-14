@@ -32,7 +32,10 @@ def Solve():
     primes = []
     
     #Create the pandigitals to test
-    for i in range(1, 10):
+    #Note: 9 and 8-digit pandigitals can't be prime 
+    #b/c the sum of 1 through 9 and 1 through 8
+    # is 45 and 36 (both divisible by 3), respectively.
+    for i in range(1, 8):
         digits.append(i)
         perm = p(digits)
         for j in list(perm):
