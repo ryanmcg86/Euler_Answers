@@ -49,8 +49,6 @@ def solve(num):
     while countdivs(tri(i)) <= num:
         i += 1
     
-    
-
     print 'The value of the first triangle number to have over '
     print str(num) + ' divisors is ' + str(tri(i)) + '.'
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
