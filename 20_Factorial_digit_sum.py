@@ -13,12 +13,8 @@ import time
 def sumOfFactorialDigits(num):
     fact = 1
     for i in range(1, num + 1):
-        fact *= 1
-    fact = str(fact)
-    ans = 0
-    for i in fact:
-        ans += int(i)
-    return ans
+        fact *= i
+    return sum(int(i) for i in str(fact))
 
 #Solution function
 def Solution(num):
