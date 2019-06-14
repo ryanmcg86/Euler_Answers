@@ -10,43 +10,31 @@ Link: https://projecteuler.net/problem=24'''
 
 #Imports
 import time
-from itertools import permutations
+from itertools import permutations as p
 
 #Build a suffix function
 def buildSuffix(num):
     suff = 'th'
     begin = len(str(num)) - 2
     end = begin + 1
+    suffixes = [[1, 'st'], [2, 'nd'], [3, 'rd']]
     if str(num)[begin:end] != '1':
-        if   int(str(num)[-1]) == 1:
-            suff = 'st'
-        elif int(str(num)[-1]) == 2:
-            suff = 'nd'
-        elif int(str(num)[-1]) == 3:
-            suff = 'rd'
+        for i in range(0, len(suffixes)):
+            if int(str(num)[-1]) == suffixes[i][0]:
+                suff = suffixes[i][1]
     return suff
 
 #Build a lexigraphic permutation function
 #that returns the nth lexigraphic permutation
 #of a given input of numbers 
 def lexiPermutation(digits, permCount):
-    start = time.time()
+    start     = time.time()
+    perm      = list(p(digits))
+    num       = int(''.join(str(digit) for digit in perm[permCount - 1]))
+    suff      = buildSuffix(permCount)
+    permCount = str(permCount) + suff
     
-    perm = permutations(digits)
-    lexiperm = 0
-    counter = 0
-    for i in list(perm):
-        counter += 1
-        if counter == permCount:
-            num = ''
-            for digit in i:
-                num += str(digit)
-            lexiperm = int(num)
-     
-    suff = buildSuffix(permCount)
-    num = str(permCount) + suff
-    
-    print 'The ' + num + ' lexicographic permutation of the given digits is ' + str(lexiperm) + '.'
+    print 'The ' + permCount + ' lexicographic permutation of the given digits is ' + str(num) + '.'
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
 
 #Run the program
