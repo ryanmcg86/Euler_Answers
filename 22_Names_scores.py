@@ -14,23 +14,13 @@ import time
 
 #Build a nameScore function
 def nameScore(name, index):
-    score = 0
-    for letter in name:
-        score += (ord(letter) - 64)
-    return score * (index + 1)
+    return sum(ord(letter) - 64 for letter in name) * (index + 1)
 
 #Solution function
 def Solution(filename):
     start = time.time()
-    f = open(filename, 'r')
-    names = []
-    names = f.read().split(',')
-    for i in range(0, len(names)):
-        names[i] = names[i].replace('"', '')
-    names = sorted(names)
-    total = 0
-    for i in range(0, len(names)):
-        total += nameScore(names[i], i)
+    names = sorted(list(open(filename, 'r').read().replace('"', '').split(',')))
+    total = sum(nameScore(names[i], i) for i in range(0, len(names)))
     
     print 'The total of all the name scores in the file is ' + str(total) + '.'
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
