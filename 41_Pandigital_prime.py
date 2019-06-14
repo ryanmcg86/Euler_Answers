@@ -38,9 +38,9 @@ def Solve():
     for i in range(1, 8):
         digits.append(i)
         perm = p(digits)
-        for j in list(perm):
-            j = list(j)
-            num = int(''.join(str(k) for k in j))
+        for pan in list(perm):
+            pan = list(pan)
+            num = int(''.join(str(digit) for digit in pan))
             pans.append(num)
     
     #Find the prime pandigitals
