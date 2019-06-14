@@ -25,8 +25,8 @@ def isPrime(n):
 
 #Build a Solve function
 def Solve():
+    #Define variables
     start = time.time()
-    
     digits = []
     perms = []
     primes = []
@@ -49,9 +49,11 @@ def Solve():
     for i in range(0, len(perms)):
         if isPrime(int(perms[i])):
             primes.append(int(perms[i]))
-           
+    
+    #Find the largest prime pandigital
     ans = str(max(primes))
-   
+
+    #Print the results
     print 'The largest pandigital prime is ' + ans + '.'
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
     
