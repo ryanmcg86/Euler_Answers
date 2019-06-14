@@ -26,9 +26,9 @@ def isPrime(n):
 #Build a Solve function
 def Solve():
     #Define variables
-    start = time.time()
+    start  = time.time()
     digits = []
-    perms = []
+    pans   = []
     primes = []
     
     #Create the pandigitals to test
@@ -43,12 +43,12 @@ def Solve():
             num = ''
             for k in range(0, len(j)):
                 num += str(j[k])
-            perms.append(num)
+            pans.append(int(num))
     
     #Find the prime pandigitals
-    for i in range(0, len(perms)):
-        if isPrime(int(perms[i])):
-            primes.append(int(perms[i]))
+    for i in range(0, len(pans)):
+        if isPrime(pans[i]):
+            primes.append(pans[i])
     
     #Find the largest prime pandigital
     ans = str(max(primes))
