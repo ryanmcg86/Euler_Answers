@@ -15,24 +15,19 @@ import time
 
 #Build a suffix function
 def buildSuffix(num):
-    suff = 'th'
+    suff  = 'th'
     begin = len(str(num)) - 2
-    end = begin + 1
+    end   = begin + 1
+    suffixes = [[1, 'st'], [2, 'nd'], [3, 'rd']]
     if str(num)[begin:end] != '1':
-        if   int(str(num)[-1]) == 1:
-            suff = 'st'
-        elif int(str(num)[-1]) == 2:
-            suff = 'nd'
-        elif int(str(num)[-1]) == 3:
-            suff = 'rd'
+        for i in range(0, len(suffixes)):
+            if int(str(num)[-1]) == suffixes[i][0]:
+                   suff = suffixes[i][1]
     return suff
 
 #Build an isPower function
 def isPower(num, power):
-    total = 0
-    for digit in str(num):
-        total += int(digit)**power
-    return total == num
+    return num == sum(int(digit)**power for digit in str(num))
 
 #Build a answer function
 def answer(power):
