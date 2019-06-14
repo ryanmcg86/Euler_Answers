@@ -8,13 +8,7 @@ Link: https://projecteuler.net/problem=34'''
 #Imports
 from itertools import combinations_with_replacement as cwr
 import time
-
-#Build a factorial function
-def fact(n):
-    ans = 1
-    for i in range(1, n + 1):
-        ans *= i
-    return ans
+import math
 
 #Build a Solve function
 def Solve():
@@ -24,7 +18,7 @@ def Solve():
     total = 0
     
     for i in range(0, 10):
-        facts.append([i, fact(i)])
+        facts.append([i, math.factorial(i)])
         
     for digits in range(2, 8):
         #Rather than testing every number up to 9! * 7,
@@ -32,11 +26,9 @@ def Solve():
         #for each length of number up to (and including) 7.
         #19437 < 2540160, and therefore runs much faster.
         for comb in cwr(facts, digits):
-            num = ''
-            sumfacts = 0
-            for i in range(0, len(comb)):
-                num += str(comb[i][0])
-                sumfacts += comb[i][1]
+            comb = list(comb)
+            num = ''.join(str(i[0]) for i in comb)
+            sumfacts = sum(i[1] for i in comb)
             #Since we're not checking every number, I can only confirm
             #it's a match if I sort both numbers, and then check for equality.
             if sorted(str(sumfacts)) == sorted(num):
@@ -65,7 +57,7 @@ For numbers of length 2 through 7, the following amount of combinations are crea
 6: 5005
 7: 11440
 
-We only have to go up to 7 digits, because the largest value an 8-digit number (99999999) can have its factorials sum 
+We only have to go up to 7 digits, because the largest value an 8-digit number (99999999) has its factorials sum 
 up to is 2903040, meaning that all other possibilities will be less than that, and 8-digit numbers, by definition,
 are ALL larger than that. This is only worsened as the number of digits increases, so it's impossible for any
 numbers with more than 7 digits to have the sum of the factorials of their digits equal the original number.
