@@ -40,10 +40,8 @@ def Solve():
         perm = p(digits)
         for j in list(perm):
             j = list(j)
-            num = ''
-            for k in range(0, len(j)):
-                num += str(j[k])
-            pans.append(int(num))
+            num = int(''.join(str(k) for k in j))
+            pans.append(num)
     
     #Find the prime pandigitals
     for i in range(0, len(pans)):
