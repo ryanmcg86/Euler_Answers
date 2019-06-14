@@ -10,7 +10,7 @@ If the product of these four fractions is given in its lowest common terms, find
 Link: https://projecteuler.net/problem=33'''
 
 #Imports
-from itertools import permutations
+from fractions import Fraction
 import time
 
 #Build a Solve function
