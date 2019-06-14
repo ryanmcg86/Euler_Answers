@@ -8,14 +8,14 @@ import time
 
 #Build a Sum-of-Digits function
 def SumDigits(base, exp):
-    num = str(base**exp)
-    return sum(int(i) for i in num)
+    return sum(int(i) for i in str(base**exp))
 
 #Solution function
 def Solution(base, exp):
     start = time.time()
     ans = str(SumDigits(base, exp))
     num = str(base) + '^' + str(exp)
+    
     print 'The sum of the digits of the number ' + num + ' is ' + ans + '.'
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
 
