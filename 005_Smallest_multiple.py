@@ -20,7 +20,8 @@ def run(n):
     for i in range(1, n + 1):
         ans = lcm(ans, i)
             
-    print 'The smallest positive number that is evenly divisible by all of the numbers from 1 to ' + str(n) + '  is ' + str(ans) + '.'
+    print 'The smallest positive number that is evenly divisible by all of '
+    print 'the numbers from 1 to ' + str(n) + '  is ' + str(ans) + '.'
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
     
 #Run the program
