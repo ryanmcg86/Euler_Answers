@@ -22,7 +22,7 @@ def Solve(num):
     
     total = 0
     for i in range(1, num):
-        if isPalindrome(i) and isPalindrome(int(binary(i))):
+        if isPalindrome(i) and isPalindrome(binary(i)):
             total += i
             
     total = str(total)
