@@ -20,9 +20,9 @@ def nameScore(name, index):
 def Solution(filename):
     start = time.time()
     names = sorted(list(open(filename, 'r').read().replace('"', '').split(',')))
-    total = sum(nameScore(names[i], i) for i in range(0, len(names)))
+    total = str(sum(nameScore(names[i], i) for i in range(0, len(names))))
     
-    print 'The total of all the name scores in the file is ' + str(total) + '.'
+    print 'The total of all the name scores in the file is ' + total + '.'
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
 
 #Run the program
