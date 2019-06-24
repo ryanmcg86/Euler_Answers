@@ -8,31 +8,6 @@ Link: https://projecteuler.net/problem=35'''
 #Imports
 import time
 
-#Build a build-a-prime-sieve function
-def build_sieve(n):
-    if n < 2:
-        return []
-    if n < 3:
-        return [2]
-    if n < 5:
-        return [2, 3]
-    if n < 7:
-        return [2, 3, 5]
-    prime_sieve = [2, 3, 5, 7]
-    if n < 11:
-        return prime_sieve
-    for i in range(11, n, 6):
-        for j in range(i, i + 3, 2):
-            flag = True
-            for k in prime_sieve:
-                if k > int(j**0.5) + 1:
-                    break
-                if j % k == 0:
-                    flag = False
-            if flag == True:
-                prime_sieve.append(j)
-    return prime_sieve
-    
 #Build an isPrime function
 def isPrime(n):
     if n <= 1:
@@ -47,6 +22,24 @@ def isPrime(n):
             return False
         i += 6
     return True
+
+#Build a build-a-prime-sieve function
+def build_sieve(n):
+    if n < 2:
+        return []
+    if n < 3:
+        return [2]
+    prime_sieve = [2, 3]
+    if n < 5:
+        return prime_sieve
+    i = 5
+    while i <= n:
+        if isPrime(i):
+            prime_sieve.append(i)
+        if isPrime(i + 2):
+            prime_sieve.append(i + 2)
+        i += 6
+    return prime_sieve
     
 #Build an isCircular function
 def isCircular(n):
