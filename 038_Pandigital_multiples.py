@@ -24,8 +24,8 @@ def isPan(n):
 def Solve():
     start = time.time()
     
-    values = []
-    largest = 0
+    values   = []
+    largest  = 0
     maxindex = 0
     
     #We go as high as 4 digits b/c n must
