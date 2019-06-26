@@ -52,7 +52,7 @@ def solve():
 	total = str(sum(list(map(int, pandigitals))))
 
     #Print the results
-	print 'The sum of all 0 to 9 pan digital numbers with the given'
+	print 'The sum of all 0 to 9 pandigital numbers with the given'
 	print 'property is ' + total + '.'
 	print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
 
