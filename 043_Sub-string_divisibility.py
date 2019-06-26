@@ -19,39 +19,42 @@ import time
 
 #Build a solve function
 def solve():
+	#Define variables
 	start       = time.time()
 	total       = 0
 	digits      = {str(i) for i in range(0, 10)}
+	#Include 1 with the primes, as we have
+	#to add a leading digit 7 total times.
 	primes      = [13, 11, 7, 5, 3, 2, 1]
 	pandigitals = []
     
-    #Start with the 3 digit numbers divisible by 17,
-    #GREATLY reducing the numbers we need to check
+	#Start with the 3 digit numbers divisible by 17,
+	#GREATLY reducing the numbers we need to check
 	for i in range(102, 983, 17):
 		num = str(i)
-        #if the number has 3 unique digits, add it to the list
+		#if the number has 3 unique digits, add it to the list
 		if len(set(num)) == len(num):
 			pandigitals.append(num)
      
 	for p in primes:
 		temp = []
-		for n in pandigitals:
-			nums = list(digits - set(n))
-            #Add each of the remaining digits not in 
-            #n to the front of n, and see if it's
-            #divisible by p. If it is, add it to temp
+		for valids in pandigitals:
+			nums = list(digits - set(valids))
+			#Add each of the remaining digits not in 
+			#n to the front of n, and see if it's
+			#divisible by p. If it is, add it to temp
 			for num in nums:
-				testnum = num + n
-				if int(testnum[0:3]) % p == 0:
-					temp.append(str(t))
-        #Replace the current pandigitals with the updated
-        #possible numbers
+				new = num + valids
+				if int(new[0:3]) % p == 0:
+					temp.append(str(new))
+		#Replace the current pandigitals with
+		#the updated possible numbers
 		pandigitals = temp
-    
-    #Sum up all the pandigitals found that have the given property
+
+	#Sum up all the pandigitals found that have the given property
 	total = str(sum(list(map(int, pandigitals))))
 
-    #Print the results
+	#Print the results
 	print 'The sum of all 0 to 9 pandigital numbers with the given'
 	print 'property is ' + total + '.'
 	print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
