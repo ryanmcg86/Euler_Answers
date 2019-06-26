@@ -25,7 +25,7 @@ def solve():
 	primes      = [13, 11, 7, 5, 3, 2, 1]
 	pandigitals = []
     
-    #Start with the 3 digit numbers divisible by 17
+    #Start with the 3 digit numbers divisible by 17,
     #GREATLY reducing the numbers we need to check
 	for i in range(102, 983, 17):
 		num = str(i)
