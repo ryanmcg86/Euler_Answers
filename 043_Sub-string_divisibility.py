@@ -15,38 +15,46 @@ Find the sum of all 0 to 9 pandigital numbers with this property.
 Link: https://projecteuler.net/problem=43'''
 
 #Imports
-from itertools import permutations as p
 import time
 
-#Build a has-the-given-property function
-def hasProperty(num):
-    primes = [2, 3, 5, 7, 11, 13, 17]
-    for i in range(1, 8):
-        j = i + 3
-        p = i - 1
-        sub = int(str(num)[i:j])
-        if sub % primes[p] != 0:
-            return False
-    return True
-
 #Build a solve function
-def solve(digits):
-    #Declare variables
-    start  = time.time()
-    perms  = list(p(digits))
-    total  = 0
-
-    #Sum up the pandigitals that have the property
-    for i in range(0, len(perms)):
-        num = ''.join(str(digit) for digit in perms[i])
-        if hasProperty(num):
-            total += int(num)
+def solve():
+	start       = time.time()
+	total       = 0
+	digits      = {str(i) for i in range(0, 10)}
+	primes      = [13, 11, 7, 5, 3, 2, 1]
+	pandigitals = []
+    
+    #Start with the 3 digit numbers divisible by 17
+    #GREATLY reducing the numbers we need to check
+	for i in range(102, 983, 17):
+		num = str(i)
+        #if the number has 3 unique digits, add it to the list
+		if len(set(num)) == len(num):
+			pandigitals.append(num)
+     
+	for p in primes:
+		temp = []
+		for n in pandigitals:
+			nums = list(digits - set(n))
+            #Add each of the remaining digits not in 
+            #n to the front of n, and see if it's
+            #divisible by p. If it is, add it to temp
+			for num in nums:
+				testnum = num + n
+				if int(testnum[0:3]) % p == 0:
+					temp.append(str(t))
+        #Replace the current pandigitals with the updated
+        #possible numbers
+		pandigitals = temp
+    
+    #Sum up all the pandigitals found that have the given property
+	total = str(sum(list(map(int, pandigitals))))
 
     #Print the results
-    print 'The sum of all 0 to 9 pandigital numbers with the given '
-    print 'property is ' + str(total) + '.'
-    print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
+	print 'The sum of all 0 to 9 pan digital numbers with the given'
+	print 'property is ' + total + '.'
+	print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
 
 #Run the program
-digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-solve(digits)
+solve()
