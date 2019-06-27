@@ -15,7 +15,7 @@ import time
 
 #Build a pentagonals function
 def P(n):
-    return (n * (3 * n) - 1)) / 2
+    return (n * ((3 * n) - 1)) / 2
     
 #Build an isPentagonal function
 #Note: this was derived by using the quadratic
@@ -37,6 +37,11 @@ def solve():
     #pentagonal below it for the given condition.
     #Since we're looking for the smallest difference,
     #we start at P(k) = P(j - 1) and work our way down.
+    #Note: since pentagonal numbers grow O(n^2), as they
+    #get larger, the differences between any two grow as
+    #well, therefore, the first set we find that fulfill
+    #the requirements is necessarily the smallest
+    #possible difference, and thus, our answer.
     while notfound:
         for k in range(j - 1, 0, -1):
             Pk = P(k)
