@@ -10,7 +10,7 @@ import time
 def solve(digits, number):
     #Declare variables
     start = time.time()
-    ans = str(sum(i**i for i in range(1, 1001)))[-digits:]
+    ans = str(sum(i**i for i in range(1, number + 1)))[-digits:]
 
     #Print the results
     print 'The last ' + str(digits) + ' digits of the series,'
