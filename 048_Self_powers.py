@@ -17,7 +17,6 @@ def solve(digits, number):
     print '1^1 + 2^2 + 3^3 + ... + ' + str(number) + '^' + str(number) + ' are ' + ans + '.'
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
 
-
 #Run the program
 digits = 10
 number = 1000
