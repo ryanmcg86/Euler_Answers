@@ -58,7 +58,7 @@ def solve(n):
     for i in range(0, mpcp):
         if mpcp - i < largest:
             break
-        for j in range(i + 1, mpcp):
+        for j in range(largest + 1, mpcp):
             num = sum(primes[k] for k in range(i, j))
             if num > n:
                 break
