@@ -37,7 +37,7 @@ def build_sieve(n):
     if n < 5:
         return prime_sieve
     i = 5
-    while sum(prime_sieve) <= n:
+    while sum(prime_sieve) <= n:    #We only need up to once the primes sum to n
         if isPrime(i):
             prime_sieve.append(i)
         if isPrime(i + 2) and i + 2 <= n:
