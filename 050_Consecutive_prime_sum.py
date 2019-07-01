@@ -36,11 +36,13 @@ def build_sieve(n):
     prime_sieve = [2, 3]
     if n < 5:
         return prime_sieve
-    for i in range(5, n + 1, 6):
+    i = 5
+    while sum(prime_sieve) <= n:
         if isPrime(i):
             prime_sieve.append(i)
         if isPrime(i + 2) and i + 2 <= n:
             prime_sieve.append(i + 2)
+        i += 6
     return prime_sieve
 
 #Build a solve function
@@ -50,16 +52,8 @@ def solve(n):
     primes  = build_sieve(n)
     ans     = 0
     largest = 0
-    mpcp    = 0
-    total   = 0
-    
-    #Calculate the most possible consecutive primes
-    for i in primes:
-        total += i
-        mpcp += 1
-        if total > n:
-            break
-            
+    mpcp    = len(primes) #most possible consecutive primes
+
     #Calculate the answer
     for i in range(0, mpcp):
         if mpcp - i < largest:
