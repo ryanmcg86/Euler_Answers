@@ -31,8 +31,6 @@ def build_sieve(n):
     if n < 3:
         return [2]
     prime_sieve = [2, 3]
-    if n < 5:
-        return prime_sieve
     i = 5
     while i <= n:
         if isPrime(i):
