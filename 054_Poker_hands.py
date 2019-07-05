@@ -51,26 +51,76 @@ Link: https://projecteuler.net/problem=54'''
 #Imports
 import time
 
-#Build a number function
-def number(card):
-    dictionary = {'T':10, 'J':11, 'Q':12, 'K':13, 'A':14}
-    if card[0] in dictionary:
-        return dictionary[card[0]]
-    else:
-        return int(card[0])
+#Build a Straight function
+def straight(nums):
+	if nums == [14, 2, 3, 4, 5]:
+		return 5
+	if not sum([abs(nums[i] - nums[0] - i) for i in range(5)]):
+		return nums[-1]
+	return False
+
+#Build a Flush function
+def flush(suits):
+	return len(set(suits)) == 1
+
+#Build a Groups function
+def groups(nums):
+	groups = []
+	for n in set(nums):
+		groups.append((nums.count(n), n))
+	groups.sort()
+	groups.reverse()
+	return groups
+
+#Build a hand function
+def hand(cards):
+	cards.sort()
+	nums      = [c[0] for c in cards]
+	suits     = [c[1] for c in cards]
+	s, f      = straight(nums), flush(suits)
+	of_a_kind = [count for count, value in groups(nums)]
+	signature = [value for count, value in groups(nums)]
+	if s and f:
+		return 8, s
+	if of_a_kind == [4, 1]:
+		return 7, signature
+	if of_a_kind == [3, 2]:
+		return 6, signature
+	if f:
+		return 5, signature
+	if s:
+		return 4, signature
+	if of_a_kind == [3, 1, 1]:
+		return 3, signature
+	if of_a_kind == [2, 2, 1]:
+		return 2, signature
+	if of_a_kind == [2, 1, 1, 1]:
+		return 1, signature
+	return 0, signature
 
 #Build a solve function
-def solve():
+def solve(file):
     #Define variables
     start = time.time()
+    count = 0
+    vals = {'A':14, 'K':13, 'Q':12, 'J':11, 'T':10}
+	
+    #Fill the values
+    for i in range(2, 10):
+	vals[str(i)] = i
     
 	
     #Solve the problem
-    
+    for h in [line.split() for line in open(file, 'r').xreadlines()]:
+	p1 = [(vals[a], b) for a, b in h[:5]]
+	p2 = [(vals[a], b) for a, b in h[5:]]
+	if hand(p1) > hand(p2):
+		count += 1
 
     #Print the results
-    print ''
+    print 'Player 1 wins ' + str(count) + ' hands.'
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
 
 #Run the program
-solve()
+file = 'poker.txt'
+solve(file)
