@@ -37,11 +37,11 @@ def isPrime(n):
  
 #Build a spiral function
 def spiral(n):
-  spiral = []
-  #1 instead of 0, as n**2 will never be prime, this speeds it up a bit.
-  for i in range(1, 4):
-      spiral.append(n**2 - i * (n - 1))
-	return spiral
+    spiral = []
+    #1 instead of 0, as n**2 will never be prime, this speeds it up a bit.
+    for i in range(1, 4):
+        spiral.append(n**2 - i * (n - 1))
+    return spiral
   
 #Build a primeCount function   
 def primeCount(n):
