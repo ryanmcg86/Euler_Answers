@@ -17,7 +17,7 @@ def solve(n):
     #Solve the problem
     for a in range(1, 100):
         for b in range(1, 100):
-            num = sum(int(i) for i in str(a**b))
+            num = sum(int(digit) for digit in str(a**b))
             if num > maxSum:
                 maxSum = num
 
