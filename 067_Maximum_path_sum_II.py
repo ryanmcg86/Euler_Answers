@@ -51,13 +51,18 @@ def prep(filename):
     return triangles
 
 #Solution function
-def Solution(triangle):
+def Solution(filename):
+    #Declare variables
     start = time.time()
+    triangle = prep(filename)
+      
+    #Solve the problem
     ans = str(findMaxPath(triangle))
+      
+    #Print the results
     print 'The maximum total from top to bottom of the given triangle is ' + ans + '.'
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
 
 #Run the program
 filename = 'triangles.txt'
-triangle = prep(filename)
-Solution(triangle)
+Solution(filename)
