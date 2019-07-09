@@ -60,7 +60,7 @@ def run():
 
     #print results
     print 'The maximum 16-digit string for a "magic" 5-gon ring is ' + str(largestNum) + '.'
-    print 'It took ' + (time.time() - start) + ' seconds to find the result.'
+    print 'It took ' + str(time.time() - start) + ' seconds to find the result.'
     
 #Run the program
 run()
