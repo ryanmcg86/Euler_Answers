@@ -67,8 +67,8 @@ import math
 #Build a solve function
 def solve(limit):
     #Define variables
-    start = time.time()
-    c = 0
+    start    = time.time()
+    oddCount = 0
 
     #Solve the problem
     for n in range(2, limit + 1):
@@ -77,17 +77,17 @@ def solve(limit):
         a = math.floor(n**0.5)
         b = math.floor(n**0.5)
         k = 1.0
-        p = 0
-        while k != 1 or p == 0:
+        p_len = 0                  #period length
+        while k != 1 or p_len == 0:
             k = (n - b * b) / k
             a = math.floor((n**0.5 + b) / k)
             b = a * k - b
-            p += 1
-        if p % 2 == 1:
-            c += 1
+            p_len += 1
+        if p_len % 2 == 1:
+            oddCount += 1
 
     #Print the results
-    print 'For N <= ' + str(limit) + ', there are ' + str(c)
+    print 'For N <= ' + str(limit) + ', there are ' + str(oddCount)
     print 'continued fractions with an odd period.'
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
 
