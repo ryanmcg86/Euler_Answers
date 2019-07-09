@@ -72,7 +72,7 @@ def solve(limit):
 
     #Solve the problem
     for n in range(2, limit + 1):
-        if n**0.5 % 1 == 0:
+        if n**0.5 % 1 == 0:        #if n is a square
             continue
         a = math.floor(n**0.5)
         b = math.floor(n**0.5)
