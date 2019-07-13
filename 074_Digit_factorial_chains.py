@@ -43,41 +43,36 @@ def countChains(n):
             distincts.append(num)
         num = sumFacts(num)
     return len(distincts)
-    
+
+#Build an insert function
+def insert(input1, input2, ans, unique):
+    uni = unique
+    num = ''
+    for i in range(0, len(str(ans))):
+        if str(ans)[i] == input1:
+            num = str(ans)[0:i] + input2 + str(ans)[i + 1:]
+        else:
+            num = str(ans)
+        perms = p(num)
+        for i in list(perms):
+            num = int(''.join(str(i[j]) for j in range(len(list(i)))))
+            #Only insert new permutations that don't have leading 0's
+            if i not in uni and len(str(num)) == len(str(ans)):
+                uni.append(i)
+    return uni
+
 #Build a countAnswers function
 def countAnswers(answers):
     unique = []
     for ans in answers:
         #Deal with 1's in an answer since fact(0) and fact(1) both equal 1.
-        num = ''
-        for i in range(0, len(str(ans))):
-            if str(ans)[i] == '1':
-                num = str(ans)[0:i] + '0' + str(ans)[i + 1:]
-            else:
-                num = str(ans)
-            perms = p(num)
-            for i in list(perms):
-                num = int(''.join(str(i[j]) for j in range(len(list(i)))))
-                #Only insert new permutations that don't have leading 0's.
-                if i not in unique and len(str(num)) == len(str(ans)):
-                    unique.append(i)
+        unique = insert('1', '0', ans, unique)
         #Deal with 0's in an answer since fact(0) and fact(1) both equal 1.
-        num = ''
-        for i in range(0, len(str(ans))):
-            if str(ans)[i] == '0':
-                num = str(ans)[0:i] + '1' + str(ans)[i + 1:]
-            else:
-                num = str(ans)
-            perms = p(num)
-            for i in list(perms):
-                num = int(''.join(str(i[j]) for j in range(len(list(i)))))
-                #Only insert new permutations that don't have leading 0's.
-                if i not in unique and len(str(num)) == len(str(ans)):
-                    unique.append(i)
+        unique = insert('0', '1', ans, unique)
     return str(len(unique))
 
 #Build a solve function
-def solve(limit, left, right):
+def solve(limit, chainCount):
     #Define variables
     start   = time.time()
     digits  = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
