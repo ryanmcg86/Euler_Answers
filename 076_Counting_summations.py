@@ -15,14 +15,19 @@ import time
 
 #Build a solve function
 def solve(limit):
-    #Define variables
-    start  = time.time()
+    start = time.time()
+    digits = [x for x in range(1, limit + 1)]
     
-    #Solve the problem
+    final = digits[-1]
+    ways = [1] + [0] * final
+    for i in digits:
+        for j in range(i, final + 1):
+            ways[j] += ways[j - i]
     
-
-    #Print the results
-    print 'It took ' + str(time.time() - start) + ' seconds to find the result.'
+    ans = str(ways[-1] - 1)
+    
+    print 'There are ' + ans + ' different ways to sum up to ' + str(limit) + '.'
+    print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
 
 #Run the program
 limit = 100
