@@ -18,7 +18,8 @@ import time
 
 #Build an isPandigital function
 def isPan(n):
-    return '123456789' == ''.join(sorted(str(n)))
+    num = ''.join(str(i) for i in range(1, len(str(n)) + 1))
+    return num == ''.join(sorted(str(n)))
 
 #Build a Solve function
 def Solve():
