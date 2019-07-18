@@ -45,4 +45,4 @@ def solve(limit):
 
 #Run the program
 limit = 10**6
-solve()
+solve(limit)
