@@ -48,9 +48,8 @@ def solve(limit):
     ans = str(I * J)
 
     #Print the results
-    print 'The area of the grid with the closest '
-    print 'amount of rectangles to ' + str(limit) + ' is ' + ans + '.' 
-    print 'It was a ' + str(I) + ' x ' + str(J) + ' grid which had the nearest solution.'
+    print 'The area of the grid closest to ' + str(limit) + ' squares is ' + ans + '.'
+    print 'The ' + str(I) + ' by ' + str(J) + ' grid in question has ' + str(amount(I, J)) + ' squares.'
     print 'This took ' + str(time.time() - start) + ' seconds too calculate.'
 
 #Run the program
