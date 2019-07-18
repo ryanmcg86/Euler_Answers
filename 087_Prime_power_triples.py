@@ -36,7 +36,7 @@ def build_sieve(n):
     while i <= n:
         if isPrime(i): ps.append(i)
         m = i + 2
-        if m < n: break
+        if m > n: break
         if isPrime(m): ps.append(m)
         i += 6
     return ps
@@ -45,20 +45,19 @@ def build_sieve(n):
 def solve(limit):
     #Define variables
     start = time.time()
-    p2 = build_sieve(int(limit**(1 / 2.0)) + 1)
-    p3 = build_sieve(int(limit**(1 / 3.0)) + 1)
-    p4 = build_sieve(int(limit**(1 / 4.0)) + 1)
+    p = []
+    for i in range(2, 5):
+        p.append(build_sieve(int(limit**(1 / float(i))) + 1))
     nums = set()
     
     #Update sieves with the correct exponents
-    p2 = [p2[i]**2 for i in range(0, len(p2))]
-    p3 = [p3[i]**3 for i in range(0, len(p3))]
-    p4 = [p4[i]**4 for i in range(0, len(p4))]
+    for i in range(0, 3):
+        p[i] = [p[i][j]**(i + 2) for j in range(len(p[i]))]
 
     #Solve the problem
-    for i in p2:
-        for j in p3:
-            for k in p4:
+    for i in p[0]:
+        for j in p[1]:
+            for k in p[2]:
                 num = i + j + k
                 if num < limit:
                     nums.add(num)
