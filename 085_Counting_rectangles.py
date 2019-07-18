@@ -9,8 +9,16 @@ Link: https://projecteuler.net/problem=85'''
 import time
 
 #Build an amount function
+'''
+I initially came up with the following function:
+
 def amount(x, y):
     return sum((x - i) * (y - j) for i in range(x) for j in range(y))
+    
+but after some research found that this is MUCH faster:
+''''
+def amount(x, y):
+    return int(0.25 * (x**2 + x) * (y**2 + y))
 
 #Build a solve function
 def solve(limit):
