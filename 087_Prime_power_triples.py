@@ -49,12 +49,17 @@ def solve(limit):
     p3 = build_sieve(int(limit**(1 / 3.0)) + 1)
     p4 = build_sieve(int(limit**(1 / 4.0)) + 1)
     nums = set()
+    
+    #Update sieves with the correct exponents
+    p2 = [p2[i]**2 for i in range(0, len(p2))]
+    p3 = [p3[i]**3 for i in range(0, len(p3))]
+    p4 = [p4[i]**4 for i in range(0, len(p4))]
 
     #Solve the problem
     for i in p2:
         for j in p3:
             for k in p4:
-                num = i**2 + j**3 + k**4
+                num = i + j + k
                 if num < limit:
                     nums.add(num)
                     
