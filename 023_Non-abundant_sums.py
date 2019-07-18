@@ -17,14 +17,11 @@ import time
 #Build a proper divisor function
 def pd(n):
     pd = [1]
-    i = 2
-    while i * i <= n:
+    for i in range(2, int(n**0.5) + 1):
         if n % i == 0:
             pd.append(i)
-            if i != n / i:
-                pd.append(n / i)
-        i += 1
-    return pd
+            pd.append(n / i)
+    return list(sorted(set(pd)))
     
 #Build an isAbundant function
 def isAbundant(n):
