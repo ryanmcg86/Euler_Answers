@@ -10,7 +10,7 @@ is equal to 2427.
 Find the minimal path sum, in matrix.txt, a 31K text file containing a 80 by 80 matrix, 
 from the top left to the bottom right by only moving right and down.
 https://projecteuler.net/project/resources/p081_matrix.txt
-Link: https://projecteuler.net/problem=80'''
+Link: https://projecteuler.net/problem=81'''
 
 #Imports
 import time
