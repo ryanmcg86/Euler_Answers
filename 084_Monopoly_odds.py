@@ -63,11 +63,13 @@ from random import *
 def solve(dice):
     #Declare variables
     start  = time.time()
-    i      = 0        #Community Chest deck index
-    j      = 0        #Chance deck index
-    p      = 0        #Game board index
-    d      = 0        #Doubles counter
-    counts = [0] * 40 #Landing spots tracker
+    i      = 0         #Community Chest deck index
+    j      = 0         #Chance deck index
+    p      = 0         #Game board index
+    d      = 0         #Doubles counter
+    counts = [0] * 40  #Landing spots tracker
+    ans    = ''        #six-digital modal string
+    maxes  = [0, 0, 0] #List that stores the 3 largest amounts a spot was landed on  
 	
     #Solve the problem
     for x in range(0, 5 * 10**5):
@@ -105,7 +107,7 @@ def solve(dice):
         if dest == 2 or dest == 17 or dest == 33:
             #Set next card in the Community Chest deck
             i += 1
-            #Reset the Community Chest deck	
+            #Reset the Community Chest deck
             if i == 17:
                 i = 1
             #Community Chest outcomes
@@ -151,18 +153,16 @@ def solve(dice):
 	
     #Find the 3 highest values
     t = counts
-    maxes = [0, 0, 0]
     maxes[0] = max(t)
-    t = [t[i] for i in range(0, len(t)) if t[i] != maxes[0]]
-    maxes[1] = max(t)
-    t = [t[i] for i in range(0, len(t)) if t[i] != maxes[1]]
-    maxes[2] = max(t)
-    finals = [counts.index(maxes[0]), counts.index(maxes[1]), counts.index(maxes[2])]
-    for x in range(0, len(finals)):
-        if finals[x] < 10:
-            finals[x] = '0' + str(finals[x])
-
-    ans = str(finals[0]) + str(finals[1]) + str(finals[2])
+    for x in range(0, 2):
+        t = [t[i] for i in range(0, len(t)) if t[i] != maxes[x]]
+        maxes[x + 1] = max(t)
+    for x in range(0, len(maxes)):
+	num = counts.index(maxes[x])
+        if num < 10:
+            ans += '0' + str(num)
+	else:
+            ans += str(num)
 
     #Print the results
     print 'When using a ' + str(dice) + '-sided dice, the six-digital modal string is ' + ans + '.'
