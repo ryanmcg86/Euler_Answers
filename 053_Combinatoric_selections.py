@@ -27,7 +27,7 @@ def nCr(n, r):
     return fact(n) / (fact(r) * fact(n - r))
 
 #Build a solve function
-def solve():
+def solve(limit):
     #Define variables
     start = time.time()
     counter = 0
@@ -35,13 +35,14 @@ def solve():
     #Solve the problem
     for n in range(1, 101):
         for r in range(1, n + 1):
-            if nCr(n, r) > 10**6:
+            if nCr(n, r) > limit:
                 counter += 1
 
     #Print the results
     print 'There are ' + str(counter) + ' values of nCr that are greater'
-    print 'than 1000000 for 1 <= n <= 100.'
+    print 'than ' + str(limit) + ' for 1 <= n <= 100.'
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
 
 #Run the program
+limit = 10**6
 solve()
