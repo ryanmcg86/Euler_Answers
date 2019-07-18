@@ -8,6 +8,7 @@ Link: https://projecteuler.net/problem=60'''
 
 #Imports
 import time
+import math
 
 #Build an isPrime function
 def isPrime(n):
@@ -74,10 +75,10 @@ def getAnswer(ps):
                                         return ps[a] + ps[b] + ps[c] + ps[d] + ps[e]
 
 #Build a solve function
-def solve(file):
+def solve(limit):
     #Define variables
     start = time.time()
-    ps = build_sieve(10000)
+    ps = build_sieve(limit)
 
     #Solve the problem
     ans = getAnswer(ps)
@@ -88,4 +89,5 @@ def solve(file):
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
 
 #Run the program
-solve()
+limit = 10**4
+solve(limit)
