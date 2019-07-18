@@ -48,9 +48,7 @@ def comb(a, b):
     len_b = math.floor(math.log10(b)) + 1
     p1 = int(a*(10**len_b) + b)
     p2 = int(b*(10**len_a) + a)
-    if isPrime(p1) and isPrime(p2):
-        return True
-    return False
+    return isPrime(p1) and isPrime(p2)
     
 #Build a getAnswer function
 def getAnswer(ps): 
