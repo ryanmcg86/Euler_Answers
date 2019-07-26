@@ -19,7 +19,7 @@ def solve(limit):
     b = 15
     n = 21
     
-    #Solve the problem
+    #Solve the problem (using Diophantine Numbers)
     while n < limit:
         bnext = 3 * b + 2 * n - 2
         nnext = 4 * b + 3 * n - 3
