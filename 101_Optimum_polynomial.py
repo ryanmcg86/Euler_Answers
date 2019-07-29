@@ -64,6 +64,7 @@ def solve(limit):
     #Define variables
     start = time.time()
     total = 0
+    U = [u(i + 1) for i in range(11)]
     
     #Solve the problem
     for n in range(1, limit + 1):
