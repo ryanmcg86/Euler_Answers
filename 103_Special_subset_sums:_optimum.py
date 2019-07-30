@@ -47,17 +47,31 @@ def solve():
     start = time.time()
     n6 = [11, 18, 19, 20, 22, 25]
     n7 = [20] + [20 + n6[i] for i in range(len(n6))]
-    ans = ''
+    ans = ''.join(str(i) for i in n7)
+    minsum = sum(n7)
     
     #Solve the problem
-    if isSpecial(set(n7)):
-        for i in n7:
-            ans += str(i)
-    
+    for a in range(n7[0] - 3, n7[0] + 4):
+        for b in range(n7[1] - 3, n7[1] + 4):
+            for c in range(n7[2] - 3, n7[2] + 4):
+                for d in range(n7[3] - 3, n7[3] + 4):
+                    for e in range(n7[4] - 3, n7[4] + 4):
+                        for f in range(n7[5] - 3, n7[5] + 4):
+                            for g in range(n7[6] - 3, n7[6] + 4):
+                                test = [a, b, c, d, e, f, g]
+                                if test != sorted(test):
+                                    continue
+                                if len(test) != len(set(test)):
+                                    continue
+                                if isSpecial(set(test)):
+                                    if sum(test) < minsum:
+                                        minsum = sum(test)
+                                        ans = ''.join(str(i) for i in test)
+                                        
     #Print the results
-    print 'The set string for A, the optimum special '
-    print 'sum set for n = 7 is ' + ans + '.'
-    print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
+	print 'The set string for A, the optimum special '
+	print 'sum set for n = 7 is ' + ans + '.'
+	print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
 
 #Run the program
 solve()
