@@ -13,6 +13,17 @@ Link: https://projecteuler.net/problem=113'''
 #Imports
 import time
 
+#Build a factorial function
+def factorial(n):
+    ans = 1
+    for i in range(n, 1, -1):
+        ans *= i
+    return ans
+
+#Build an nCr function
+def nCr(n, r):
+    return factorial(n) / (factorial(r) * factorial(n - r))
+
 #Build a solve function
 def solve(exp):
     #Declare variables
