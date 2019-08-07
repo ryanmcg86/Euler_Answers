@@ -8,54 +8,74 @@ Link: https://projecteuler.net/problem=118'''
 import time
 from itertools import permutations
 
-#Build a binary function
-def binary(n):
-    bina = bin(n)[2:]
-    while len(bina) < 8:
-        bina = '0' + bina
-    return bina + '0'
+#Build a partitions function
+def partitions(n):
+    po = [[()], [(1, )]]
+    ans = []
+    for num in range(2, n + 1):
+        p = set()
+        for i in range(num):
+            for part in po[i]:
+                p.add(tuple(sorted((num - i, ) + part)))
+        po.append(list(p))
+    for i in range(0, len(po[n])):
+        ans.append(list(po[n][i])[::-1])
+    return sorted(ans)
+
+#Build a part function
+def part(part, perm):
+    temp = []
+    index = 0
+    for i in range(len(part)):
+        num = ''
+        for j in range(index, part[i] + index):
+            if j < len(perm):
+                num += str(perm[j])
+        temp.append(int(num))
+        index += part[i]
+    return temp
+
+#Build an isPrime function
+def isPrime(n):
+    if n < 2: return False
+    if n < 4: return True
+    if n % 2 == 0 or n % 3 == 0: return False
+    i = 5
+    while i * i <= n:
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        i += 6
+    return True
+
+#Build an allPrime function
+def allPrime(part):
+    for i in part:
+        if isPrime(i) == False:
+            return False
+    return True
 
 #Build a solve function
-def solve():
+def solve(n):
     #Declare variables
     start = time.time()
-    primesets = set()
-    bins = []
-    digits = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    digits = [i + 1 for i in range(n)]
+    answers = set()
+    parts = partitions(n)
     
     #Solve the problem
-    for i in range(0, 256):
-        bins.append(binary(i))
-	
-    for i in permutations(digits, 9):
-        perm = ''.join(str(j) for j in i)
-        for j in range(0, len(bins)):
-            nums = ''
-            for k in range(0, len(bins[j])):
-                if bins[j][k] == '0':
-                    nums += perm[k]
-                else:
-                    nums += ',' + perm[k]
-            nums = nums.split(',')
-            realnums = []
-            for k in nums:
-                if k != '':
-                    realnums.append(int(k))
-            realnums = sorted(realnums)
-            allprimes = True
-            for k in realnums:
-                if isPrime(k) == False:
-                    allprimes = False
-                    break
-            if allprimes:
-                primesets.add(tuple(realnums))
-                
-    ans = str(len(primesets))
+    for i in permutations(digits):
+        for j in range(0, len(parts)):
+            nums = sorted(part(parts[j], i))
+            if allPrime(nums):
+                answers.add(tuple(nums))
+
+    ans = str(len(answers))
                 
     #Print the results
-    print 'There are ' + ans + ' distinct sets containing digits 1 - 9 '
+    print 'There are ' + ans + ' distinct sets containing digits 1 - ' + str(n)
     print 'where each element in the set is prime.'
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
 
 #Run the program
-solve()
+n = 9
+solve(n)
