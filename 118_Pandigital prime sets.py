@@ -21,6 +21,7 @@ def solve():
     start = time.time()
     primesets = set()
     bins = []
+    digits = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     
     #Solve the problem
     for i in range(0, 256):
