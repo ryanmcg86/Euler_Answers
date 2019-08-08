@@ -29,3 +29,8 @@ def solve(n):
 #Run the program
 n = 10**3
 solve(n)
+
+'''rmax(a) = 2a * math.floor((a - 1) / 2), therefore:
+
+The sum of rmax, from 3 to n = (8n^3 - 6n^2 - 14n + 3) / 24 - ((-1)^n * ((2n + 1) / 8))
+'''
