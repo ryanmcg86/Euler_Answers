@@ -29,23 +29,17 @@ import time
 #Build a primeFactors function
 def primeFactors(n):
     factors = []
-    if n % 2 == 0:
-        factors.append(2)
-        while n % 2 == 0:
-            n /= 2
-    if n % 3 == 0:
-        factors.append(3)
-        while n % 3 == 0:
-            n /= 3
-    for i in range(5, int(n**0.5) + 1, 6):
+    for i in range(2, 4):
         if n % i == 0:
             factors.append(i)
             while n % i == 0:
                 n /= i
-        if n % (i + 2) == 0:
-            factors.append(i + 2)
-            while n % (i + 2) == 0:
-                n /= (i + 2)
+    for i in range(5, int(n**0.5) + 1, 6):
+        for j in range(i, i + 3, 2):
+            if n % j == 0:
+                factors.append(j)
+                while n % j == 0:
+                    n /= j
     if n > 2:
         factors.append(n)
     return factors
