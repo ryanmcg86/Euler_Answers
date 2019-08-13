@@ -13,7 +13,7 @@ Link: https://projecteuler.net/problem=135'''
 import time
     
 #Build a Solve function
-def solve(limit):
+def solve(limit, sol):
     #Define variables
     start = time.time()
     solutions = [0] * (limit + 1)
@@ -22,24 +22,25 @@ def solve(limit):
     #Solve the problem
     for u in range(1, limit + 1):
         for v in range(1, (limit / u) + 1):
-            a = ((u + v) % 4) == 0
-            b = (3 * v) > u
-            c = ((3 * v - u) % 4) == 0
-            if a and b and c:
-                solutions[u * v] += 1
+            if ((u + v) % 4) == 0:
+                if (3 * v) > u:
+                    if ((3 * v - u) % 4) == 0:
+                        solutions[u * v] += 1
                 
     for i in solutions:
-        if i == 10:
+        if i == sol:
             ans += 1
             
     ans = str(ans)
     limit = str(limit)
+    sol = str(sol)
         
     #Print the results
     print 'There are ' + ans + ' values of n less than ' + limit
-    print 'with exactly 10 distinct solutions.'
+    print 'with exactly ' + sol + ' distinct solution(s).'
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
     
 #Run the program
 limit = 10**6
+sol = 10
 solve(limit)
