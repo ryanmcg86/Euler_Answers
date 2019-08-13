@@ -43,4 +43,4 @@ def solve(limit, sol):
 #Run the program
 limit = 10**6
 sol = 10
-solve(limit)
+solve(limit, sol)
