@@ -17,21 +17,21 @@ def solve(limit):
     #Define variables
     start = time.time()
     x, y, lSum = 0, 1, 0
+    p, q, k, r, s, l = -9, -4, -4, -20, -9, -8
     
     #Solve the problem
-    for i in range(1, limit + 2):
-        tx = x
-        ty = y
-        x = (-9 * tx) + (4 * ty) - 4
-        y = (20 * tx) - (9 * ty) + 8
-        if abs(y) != 1:
-            lSum += abs(y)
+    for i in range(1, limit + 1):
+        xn = x
+        yn = y
+        x = (p * xn) + (q * yn) + k
+        y = (r * xn) + (s * yn) + l
+        lSum += abs(y)
             
     lSum = str(lSum)
-    limit = str(limit)
+    lim = str(limit)
     
     #Print the results
-    print 'The sum of L for the ' + limit + ' smallest isosceles '
+    print 'The sum of L for the ' + lim + ' smallest isosceles '
     print 'triangles for which h = b + 1 or b - 1 and both '
     print 'b and L are positive integers is ' + lSum + '.'
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
