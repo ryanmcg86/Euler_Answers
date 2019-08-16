@@ -60,6 +60,5 @@ and
 
 y(n + 1) = (20 * x(n)) - (9 * y(n)) + 8
 
-Since y is a substitution for L, to sum up the 12 smallest L values, we just loop through these equations 12 times,
-skipping L = 1, because if L = 1, then b and h can't both be an integer.
+Since y is a substitution for L, to sum up the 12 smallest L values, we just loop through these equations 12 times ans sum L.
 '''
