@@ -63,13 +63,13 @@ def solve(limit):
     start = time.time()
     ans = 0
     remainders = [3, 7, 11, 13, 17, 19]
-    rems = [mods(i) for i in remainders]
+    residues = [mods(i) for i in remainders]
     
     #Solve the problem
     for i in range(10, limit + 1, 10):
         cancel = False
         for j in range(0, len(remainders)):
-            if i % remainders[j] not in rems[j]:
+            if i % remainders[j] not in residues[j]:
                 cancel = True
                 break
         if cancel: continue
