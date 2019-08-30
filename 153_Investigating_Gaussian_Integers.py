@@ -50,32 +50,28 @@ def gcd(x, y):
         x = y
         y = a % y
     return x
-    
-#Build a ss function
-def ss(x):
-    s = 0
-    i = 1
-    while i <= x:
-        j = x / i
-        ii = x / j
-        s += (ii + i) * (ii - i + 1) * j / 2
-        i = ii + 1
-    return s
    
 #Build a Solve function
 def solve(nmax):
     #Define variables
     start = time.time()
-    s = ss(nmax)
+    s = 0
+    i = 1
     
     #Solve the problem
+    while i <= nmax:
+        j = nmax / i
+        ii = nmax / j
+        s += (ii + i) * (ii - i + 1) * j / 2
+        i = ii + 1
+    
     for a in range(1, int(nmax**0.5) + 1):
-        for b in range(1, min(a, int((nmax - a * a)**0.5)) + 1):
+        for b in range(1, min(a, int((nmax - a**2)**0.5)) + 1):
             if gcd(a, b) == 1:
                 num = 0
                 if a == b: num = a
                 else: num = a + b
-                s += ss(nmax / (a * a + b * b)) * 2 * num
+                s += ss(nmax / (a**2 + b**2)) * 2 * num
     
     #Print the results
     print 'The sum of all of the Gaussian integer divisors '
