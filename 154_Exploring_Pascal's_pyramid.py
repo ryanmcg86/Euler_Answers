@@ -33,9 +33,7 @@ def perms(a, b, c):
             return 1
         else:
             return 3
-    elif a == c:
-        return 3
-    elif b == c:
+    elif a == c or b == c:
         return 3
     else:
         return 6
@@ -49,13 +47,13 @@ def solve(exp):
     five = pows(exp, 5)
     two = pows(exp, 2)
     ans = 0
-    
-    #Solve the problem
+
     for i in range(exp + 1):
         fivepows.append(pows(i, 5))
         twopows.append(pows(i, 2))
-	
-    for a in range(exp + 1):
+    
+    #Solve the problem
+    for a in range(exp / 3 + 1):
         b = a
         c = exp - (b + a)
         while b <= c:
