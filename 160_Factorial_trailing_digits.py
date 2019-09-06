@@ -16,7 +16,7 @@ def solve(limit, digits):
     #Define variables
     start = time.time()
     result = 1
-    n = limit / 5**8  #2560000 for this problem, still need to figure out how to generalize.
+    n = 2560000
     i = 1
     
     #Solve the problem
