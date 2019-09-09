@@ -30,10 +30,10 @@ def solve(n):
 	t01a = tot - n3**i       #number of numbers with 0, 1, or A
 	t0a  = tot - n2**i       #number of numbers with 0 or A
 	t01  = tot - n2**i       #number of numbers with 0 or 1
-	t1a  = tot - n3 * n2**i1 #number of numbers with 1 or A
+	t1a  = tot - n2**i1 * n3 #number of numbers with 1 or A
 	t0   = tot - n1**i       #number of numbers with 0
-	t1   = tot - n2 * n1**i1 #number of numbers with 1
-	ta   = tot - n2 * n1**i1 #number of numbers with A
+	t1   = tot - n1**i1 * n2 #number of numbers with 1
+	ta   = tot - n1**i1 * n2 #number of numbers with A
 	ans += t01a - t0a - t01 - t1a + t0 + t1 + ta
         
     ans = str(hex(ans))[2:len(str(hex(ans))) - 1].upper()
