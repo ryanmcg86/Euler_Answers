@@ -18,20 +18,20 @@ Link: https://projecteuler.net/problem=162'''
 import time
    
 #Build a Solve function
-def solve(limit):
+def solve(n):
     #Define variables
     start = time.time()
     ans = 0
     
     #Solve the problem
-    for i in range(3, limit + 1):
-        a = 15 * 16**(i - 1)
-        b = 41 * 14**(i - 1)
-        c = (43 * 15**(i - 1) + 13**i)
+    for i in range(1, n + 1):
+        a = (n - 1) * n**(i - 1)
+        b = (3 * n - 7) * (n - 2)**(i - 1)
+        c = ((3 * n - 5) * (n - 1)**(i - 1) + (n - 3)**i)
         ans += a + b - c
         
     ans = str(hex(ans))[2:len(str(hex(ans))) - 1].upper()
-    lim = str(limit)
+    lim = str(n)
         
     #Print the results
     print 'In hexidecimal, there are ' + ans + ' numbers '
@@ -40,5 +40,5 @@ def solve(limit):
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
     
 #Run the program
-limit = 16
-solve(limit)
+n = 16
+solve(n)
