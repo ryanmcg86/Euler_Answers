@@ -10,12 +10,24 @@ def solve(n):
     #Define variables
     start = time.time()
     count = {(a, b): 1 for a in range(10) for b in range(10)}
+    ans = 0
     
     #Solve the problem
     for i in range(n - 2):
-		    count = {(a, b): sum(count[(b, c)] for c in range(10) if a + b + c <= 9) for a in range(10) for b in range(10)}
-	
-    ans = str(sum(count[(a, b)] for a in range(1, 10) for b in range(10)))
+        tempCount = {}
+	for b in range(10):
+	    for a in range(10):
+                s = 0
+		for c in range(10):
+                    if a + b + c <= 9:
+                        s += count[(b, c)]
+                tempCount.update({(a, b): s})
+        count = tempCount
+		
+    for a in range(1, 10):
+        for b in range(10):
+            ans += count[(a, b)]
+    ans = str(ans)
     n = str(n)
         
     #Print the results
