@@ -66,10 +66,10 @@ def solve():
     ans = str(ans)
 
     #Print the results
-    print 'The largest 0 to 9 pandigital 10-digit concatenated product of '
-    print 'an integer with two or more other integers, such that the '
-    print 'concatenation of the input numbers is also a 0 to 9 pandigital ' 
-    print '10-digit number, is ' + ans + '.'
+	print 'The largest 0 to 9 pandigital 10-digit concatenated '
+	print 'product of an integer with two or more other integers, '
+	print 'such that the concatenation of the input numbers is ' 
+	print 'also a 0 to 9 pandigital 10-digit number, is ' + ans + '.'
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
 
 #Run the program
