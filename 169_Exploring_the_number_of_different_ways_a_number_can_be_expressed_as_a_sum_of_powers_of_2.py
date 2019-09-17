@@ -14,26 +14,20 @@ Link: https://projecteuler.net/problem=169'''
 
 #Imports
 import time
-
-#Build the f(n) function
-def f(n, cache):
-    if n < 3:            return n
-    if cache.has_key(n): return cache[n]
-    k = n / 2
-    if n % 2 == 1:       res = f((n - 1) / 2, cache)
-    else:                res - f(k, cache) + f(k - 1, cache)
-    cache[n] =           res
-    return res
    
 #Build a Solve function
 def solve(n):
     #Define variables
     start = time.time()
-    cache = {}
+    p = [0, 1]              #p[1 - i] = number of ways to add i to next bit
+    lim = str(n)
     
     #Solve the problem
-    ans = str(f(n, cache))
-    lim = str(n)
+    while n:
+        p[n % 2] = sum(p)   # set p for least significant bit
+        n /= 2
+        
+    ans = str(p[1])
 
     #Print the results
     print 'When f(n) is the number of different ways n can be expressed '
