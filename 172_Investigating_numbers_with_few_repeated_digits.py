@@ -15,23 +15,16 @@ def solve(n):
     ans = 0
     
     #Solve the problem
-    for a1 in range(11):
-        for a2 in range(10):
-            for a3 in range(7):
-                if a1 + 2 * a2 + 3 * a3 == n:
-                    if a1 + a2 + a3 <= 10:
-                        z = fact(n)
-                        y = 6**a3
-                        x = 2**a2
-                        w = fact(a3)
-                        v = fact(a2)
-                        u = fact(a1)
-                        np = z / y / x / w / v / u
-                        t = fact(10)
-                        s = fact(10 - a1 - a2 - a3)
-                        ans += t / s * np
+    for a in range(n / 3 + 1):
+        for b in range((n - 3 * a) / 2 + 1):
+            c = n - 3 * a - 2 * b
+            if a + b + c <= 10:
+                z = 10 - a - b - c
+                y = fact(n) / 6**a / 2**b
+                k = fact(10) / fact(a) / fact(b) / fact(c) / fact(z) * y
+                ans += k
 	
-    ans = str(int(ans * 9 / 10))
+    ans = str(ans * 9 / 10)
     n = str(n)
 
     #Print the results
