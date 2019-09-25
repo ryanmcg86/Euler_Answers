@@ -32,7 +32,7 @@ def divisors(num):
     for i in range(2, int(num**0.5) + 1):
         if num % i == 0:
             divs.append(i)
-            divs.append(n / i)
+            divs.append(num / i)
     divs.append(num)
     divs = sorted(divs)
     return list(set(divs))
