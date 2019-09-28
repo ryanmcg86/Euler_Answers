@@ -24,36 +24,32 @@ def pd(n):
         if n % i == 0:
             pd.append(i)
             pd.append(n / i)
-    return list(sorted(set(pd)))
+    return set(pd)
     
 #Build an isAbundant function
 def isAbundant(n):
     return sum(pd(n)) > n
 
 #Solution function
-def Solution(num):
+def solve():
+    #Declare variables
     start = time.time()
-    total = 0
-    abundants = []
+    num = 28123
+    abundants = [i for i in range(1, num + 1) if isAbundant(i)]
     nums = [0] * (num + 1)
     
-    for i in range(1, num + 1):
-        if isAbundant(i):
-            abundants.append(i)
-            
+    #Solve the problem
     for i in abundants:
         for j in abundants:
             if i + j <= num:
                 nums[i + j] = 1
                 
-    for i in range(1, num + 1):
-        if nums[i] == 0:
-            total += i
+    total = sum(i for i in range(1, num + 1) if nums[i] == 0)
     
-    print 'The sum of all the positive integers which cannot be written as the '
-    print 'sum of two abundant numbers is ' + str(total)
+    #Print the results
+    print 'The sum of all the positive integers which cannot be '
+    print 'written as the sum of two abundant numbers is ' + str(total)
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
 
 #Run the program
-num = 28123
-Solution(num)
+solution()
