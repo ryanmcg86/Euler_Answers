@@ -62,8 +62,8 @@ def solve_a(rules, a, L):
                 a[p][rules[ri][0][p]] = 'N'
         else:
             new_rules.append(rules[ri])
-    a = solve_r(new_rules, a, L)
-    return a[0]
+    ans = solve_r(new_rules, a, L)
+    return ans[0]
 
 #Build a solve_r function
 def solve_r(rules, a, L):
@@ -80,28 +80,21 @@ def solve_r(rules, a, L):
                 if a[p][rules[ri][0][p]] == 'E':
                     consistent = False
                     break
-            if not consistent:
-                break
-        if not consistent:
-            continue
+            if not consistent: break
+        if not consistent: continue
         saved_a = copy.deepcopy(a)
         for p in range(L):
             if p in cp:
                 a[p][rules[ri][0][p]] = 'E'
                 for d in range(10):
-                    if d != rules[ri][0][p]:
-                        a[p][d] = 'N'
-            else:
-                a[p][rules[ri][0][p]] = 'N'
+                    if d != rules[ri][0][p]: a[p][d] = 'N'
+            else: a[p][rules[ri][0][p]] = 'N'
         for ri2 in range(len(rules)):
             if ri != ri2:
-                count_wrong = 0
-                count_correct = 0
+                count_wrong, count_correct = 0, 0
                 for p in range(L):
-                    if a[p][rules[ri2][0][p]] == 'E':
-                        count_correct += 1
-                    elif a[p][rules[ri2][0][p]] == 'N':
-                        count_wrong += 1
+                    if a[p][rules[ri2][0][p]] == 'E': count_correct += 1
+                    elif a[p][rules[ri2][0][p]] == 'N': count_wrong += 1
                 condition1 = count_correct > rules[ri2][1]
                 condition2 = count_wrong > L - rules[ri2][1]
                 if condition1 or condition2:
@@ -113,8 +106,7 @@ def solve_r(rules, a, L):
         saved_rule = rules.pop(ri)
         if len(rules):
             ans = solve_r(rules, a, L)
-            if ans[1]:
-                return ans
+            if ans[1]: return ans
         else:
             answer = []
             for p in range(L):
