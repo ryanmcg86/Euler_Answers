@@ -21,11 +21,11 @@ import time
 def solve(lim):
     #Define variables
     start = time.time()
-    f = [1, 2, 4] + [0] * (lim - 2)
+    f = [1, 2, 4]
 
     #Solve the problem
     for i in range(3, lim + 1):
-        f[i] = f[i - 1] + f[i - 2] + f[i - 3]
+        f.append(f[i - 1] + f[i - 2] + f[i - 3])
         
     ans = str(f[lim] + sum([f[i] * f[lim - 1 - i] for i in range(lim)]))
     lim = str(lim)
