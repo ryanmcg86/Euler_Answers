@@ -63,7 +63,7 @@ def solve(rows):
     #Define variables
     start = time.time()
     dist = Pascal(rows)
-    ps = SoE(int(dist[-1]**0.5) + 1)
+    ps = SoE(rows)
     ps2 = [i**2 for i in ps]
     sqfree = 0
     
