@@ -63,7 +63,7 @@ def solve(rows):
     #Define variables
     start = time.time()
     dist = Pascal(rows)
-    ps = SoE(rows)
+    ps = SoE(rows) #Any prime dividing C(n,k) is ≤ n, so you need only the primes up to rows.
     ps2 = [i**2 for i in ps]
     sqfree = 0
     
