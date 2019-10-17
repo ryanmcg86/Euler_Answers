@@ -18,7 +18,10 @@ def solve():
 
     #Solve the problem
     while match(n**2):
-        n -= 2
+        if n % 10 == 3:
+            n -= 6
+        else:
+            n -= 4
         
     ans = str(n * 10)
 
