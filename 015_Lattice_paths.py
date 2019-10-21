@@ -9,7 +9,7 @@ Link: https://projecteuler.net/problem=15'''
 import time
 
 #Build a factorial function
-def factorial(num):
+def fact(num):
     ans = 1
     for i in range(num, 1, -1):
         ans *= i
@@ -17,18 +17,24 @@ def factorial(num):
     
 #Build an nCr function
 def nCr(n, r):
-    return factorial(n) / (factorial(r) * factorial(n - r))
+    return int(fact(n) / (fact(r) * fact(n - r)))
 
 #Solution function
-def Solution(a, b):
+def solve(r, s):
+    #Define variables
     start = time.time()
-    n = a + b
-    r = a
-    print 'When only being able to move to the right and down, '
-    print 'there are ' + str(nCr(n, r)) + ' total routes through a ' + str(a) + 'x' + str(b) + ' grid.'
-    print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
+    n = r + s
+    
+    #Solve the problem
+    ans = str(nCr(n, r))
+    grid = str(r) + 'x' + str(s) + ' grid'
+    
+    #Print the reuslts
+    print('When only being able to move to the right and down, ')
+    print('there are ' + ans + ' total routes through a ' + grid + '.')
+    print('This took ' + str(time.time() - start) + ' seconds to calculate.')
 
 #Run the program
-a = 20
-b = 20
-Solution(a, b)
+r = 20
+s = 20
+solve(r, s)
