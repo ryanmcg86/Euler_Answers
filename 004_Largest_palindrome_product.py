@@ -9,17 +9,13 @@ import time
 
 #isPal function
 def isPal(n):
-    return str(num) == str(num)[::-1]
+    return str(n) == str(n)[::-1]
 
 #Largest palindromic number function
 def lpn(n):
     start = time.time()
     largest = 0
-    begin = ''
-    for i in range(0, n):
-        begin.append('9')
-    end   = int(begin[:-1])
-    begin = int(begin)
+    begin, end = 10**n - 1, 10**(n - 1) - 1
     
     for i in range(begin, end, -1):
         for j in range(begin, end, -1):
@@ -27,9 +23,13 @@ def lpn(n):
                 if i * j > largest:
                     largest = i * j
                 break
+                
+    ans = str(largest)
+    n = str(n)
             
-    print 'The largest palindrome made from the product of two ' + str(n) + '-digit numbers is ' + str(largest) + '.'
-    print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
+    print('The largest palindrome made from the product ')
+    print('of two ' + n + '-digit numbers is ' + ans + '.')
+    print('This took ' + str(time.time() - start) + ' seconds to calculate.')
     
 #Run the program
 n = 3
