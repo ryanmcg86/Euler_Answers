@@ -1,8 +1,7 @@
 '''This function returns the lowest common multiple for two given inputs'''
 
 def lcm(a, b):
-    a1 = a
-    b1 = b
+    a1, b1 = a, b
     while b != 0:
         i = a
         a = b
