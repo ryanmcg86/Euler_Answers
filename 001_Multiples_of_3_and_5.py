@@ -9,10 +9,13 @@ import time
 
 #Sum of multiples (of 3 and 5) function
 def SumOfMults(n, mults):
+    #Declare variables
     start = time.time()
     multiples = set()
     strnums = ''
-    for i in range(0, len(mults)):
+    
+    #Solve the problem
+    for i in range(len(mults)):
         if i != len(mults) - 1:
             strnums += str(mults[i]) + ', '
         else:
@@ -20,8 +23,14 @@ def SumOfMults(n, mults):
             strnums += ' and ' + str(mults[i])
         for j in range(0, n, mults[i]):
             multiples.add(j)
-    print 'The sum of all the multiples of ' + strnums + ' below ' + str(n) + ' is ' + str(sum(multiples)) + '.'
-    print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
+    
+    ans = str(sum(multiples))
+    n = str(n)
+            
+    #Print the results
+    print('The sum of all the multiples of ' + strnums)
+    print('below ' + n + ' is ' + ans + '.')
+    print('This took ' + str(time.time() - start) + ' seconds to calculate.')
 
 #Run the program
 n = 1000
