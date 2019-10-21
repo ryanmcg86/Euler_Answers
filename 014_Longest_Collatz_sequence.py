@@ -16,33 +16,35 @@ Link: https://projecteuler.net/problem=14'''
 
 #Imports
 import time
-
-#Chain length function
-def chainlength(n):
-    count = 1
-    while num != 1:
-        if num % 2 == 0:
-            num /= 2
-        else:
-            num = 3 * num + 1
-        count += 1
-    return count
+from operator import itemgetter as iget
 
 #Solve function
-def solve(n):
+def solve(lim):
+    #Define variables
     start = time.time()
-    longest = 0
-    startingnum = 0
+    cache = {1: 1, 2: 2}
 
-    for i in range(1, n):
-        length = chainlength(i)
-        if length > longest:
-            longest = length
-            startingnum = i
+    #Solve the problem
+    for n in range(3, lim):
+        count = 0
+        onum = n
+        while n > 1:
+            if n < onum:
+                cache[onum] = cache[n] + count
+                break
+            if n % 2 == 0: n /= 2
+            else: n = 3 * n + 1
+            count += 1
+            
+    ans = str(max(cache.items(), key = iget(1))[0])
+    l = str(cache[int(ans)])
+    n = str(lim)
 
-    print 'The starting number under ' + str(n) + ' with the longest chain is ' + str(startingnum) + '.'
-    print 'The chain for ' + str(startingnum) + ' is ' + str(longest) + '.'
-    print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
+    #Print the results
+    print('The starting number under ' + n)
+    print('with the longest chain is ' + ans + '.')
+    print('The chain for ' + ans + ' is ' + l + ' numbers long.')
+    print('This took ' + str(time.time() - start) + ' seconds to calculate.')
 
 #Run the program
 n = 1000000
