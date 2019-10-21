@@ -25,11 +25,13 @@ def squareOfsum(n):
 #Difference function
 def diff(n):
     start = time.time()
-    diff = str(squareOfsum(n) - sumOfsquares(n))
+    diff = str(int(squareOfsum(n) - sumOfsquares(n)))
+    n = str(n)
     
-    print 'The difference between the sum of the squares of the first ' + str(n) 
-    print 'natural numbers and the square of the sum is ' + diff + '.'
-    print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
+    print('The difference between the sum of the ')
+    print('squares of the first ' + n + ' natural numbers ')
+    print('and the square of their sum is ' + diff + '.')
+    print('This took ' + str(time.time() - start) + ' seconds to calculate.')
     
 #Run the program
 n = 100
