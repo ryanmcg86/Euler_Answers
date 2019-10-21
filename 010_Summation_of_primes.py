@@ -6,31 +6,30 @@ Link: https://projecteuler.net/problem=10'''
 #Imports
 import time
 
-#Build an isPrime function
-def isPrime(n):
-    if n <= 1:
-        return False
-    if n <= 3:
-        return True
-    if n % 2 == 0 or n % 3 == 0:
-        return False
-    i = 5
-    while i * i <= n:
-        if n % i == 0 or n % (i + 2) == 0:
-            return False
-        i += 6
-    return True
+#Build a Sieve of Eratosthenes function
+def SoE(n): 
+    prime = [False] * 2 + [True for i in range(n - 1)]
+    ans, p = [], 2
+    while p**2 <= n: 
+        if prime[p]: 
+            for i in range(p * 2, n + 1, p): 
+                prime[i] = False
+        p += 1
+    for p in range(n + 1): 
+        if prime[p]: ans.append(p)
+    return ans
 
 #Build a findSum function
 def findSum(num):
+    #Define variables
     start = time.time()
-    sop = 0
-    for i in range(2, num):
-        if isPrime(i):
-            sop += i
     
-    print 'The sum of all primes below ' + str(num) + ' is ' + str(sop) + '.'
-    print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
+    #Solve the problem
+    ans = str(sum(SoE(n)))
+    n = str(n)
+    
+    print('The sum of all primes below ' + n + ' is ' + ans + '.')
+    print('This took ' + str(time.time() - start) + ' seconds to calculate.')
     
 #Find the sum of all primes below 2000000
 num = 2000000
