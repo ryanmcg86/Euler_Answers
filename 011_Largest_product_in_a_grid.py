@@ -93,8 +93,10 @@ def diag2Max(grid):
   
 #Build a function that solves the problem
 def solve(grid):
+    #Define variables
     start = time.time()
     
+    #Solve the problem
     for i in range(0, len(grid)):
 	      for j in range(0, len(grid[i])):
 		        grid[i][j] = int(grid[i][j])
@@ -104,10 +106,13 @@ def solve(grid):
     c = diag1Max(grid)
     d = diag2Max(grid)
     size = str(len(grid))
+    grid = size + 'x' + size + ' grid'
+    ans = str(max(a, b, c, d))
 
-    print 'The greatest product of four adjacent numbers in the same direction '
-    print 'in the ' + size + 'x' + size + ' grid is ' + str(max(a, b, c, d)) + '.'
-    print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
+    #Print the results
+    print('The greatest product of four adjacent numbers in ')
+    print('the same direction in the ' + grid + ' is ' + ans + '.')
+    print('This took ' + str(time.time() - start) + ' seconds to calculate.')
     
 #Find the greatest product of four adjacent numbers in the same direction in the grid
 grid = [
