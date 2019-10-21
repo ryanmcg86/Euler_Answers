@@ -11,22 +11,21 @@ import time
 
 #Sum of even fibonacci numbers function
 def EvenFibSum(n):
+    #Define variables
     start = time.time()
-    fibSeq = [1, 2]
-    sumOfTerms = 0
+    fib = [1, 2]
     
-    while fibSeq[len(fibSeq) - 1] < n:
-        num1 = fibSeq[len(fibSeq) - 1]
-        num2 = fibSeq[len(fibSeq) - 2]
-        num  = num1 + num2
-        fibSeq.append(num)
-    fibSeq = fibSeq[:-1]
+    #Solve the problem
+    while fib[-1] < n:
+        fib.append(fib[-1] + fib[-2])
     
-    for i in range(1, len(fibSeq), 3):
-        sumOfTerms += fibSeq[i]
+    ans = str(sum(fib[i] for i in range(1, len(fib), 3)))
+    n = str(n)
         
-    print 'The sum of the even-valued terms in the Fibonacci sequence below ' + str(n) + ' is ' + str(sumOfTerms) + '.'
-    print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
+    #Print the results
+    print('The sum of the even-valued terms in the Fibonacci ')
+    print('sequence below ' + n + ' is ' + ans + '.')
+    print('This took ' + str(time.time() - start) + ' seconds to calculate.')
 
 #Run the program
 n = 4000000
