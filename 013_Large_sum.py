@@ -107,16 +107,16 @@ import time
 
 #Build a function that solves the problem
 def solve(nums):
+    #Define variables
     start = time.time()
     nums = nums.split('\n')
-    sumNums = 0
-    for i in range(0, len(nums)):
-        sumNums += int(nums[i])
     
-    ans = str(sumNums)[0:10]
+    #Solve the problem
+    ans = str(sum(int(nums[i]) for i in range(len(nums))))[0:10]
     
-    print 'The first ten digits of the sum of the given numbers is ' + ans + '.'
-    print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
+    #Print the results
+    print('The first ten digits of the sum of the given numbers is ' + ans + '.')
+    print('This took ' + str(time.time() - start) + ' seconds to calculate.')
     
 #Find the first ten digits of the sum of the given numbers
 nums = '''37107287533902102798797998220837590246510135740250
