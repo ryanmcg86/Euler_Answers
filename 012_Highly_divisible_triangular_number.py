@@ -19,39 +19,54 @@ Link: https://projecteuler.net/problem=12'''
 
 #Imports
 import time
+from math import prod
 
 #Build a function that finds the triangle
 #number for n natural numbers
 def tri(num):
     return num * (num + 1) / 2
-    
-#Build a function that returns all the divisors
-#for a given input
-def divisors(num):
-    divs = [1]
-    for i in range(2, int(num**0.5) + 1):
-        if num % i == 0:
-            divs.append(i)
-            divs.append(num / i)
-    divs.append(num)
-    divs = sorted(divs)
-    return list(set(divs))
+ 
+#Build a factors function
+def factors(n):
+    facts = []
+    for i in range(2, 4):
+        if n % i == 0: facts.append([i, 0])
+        while n % i == 0:
+            facts[-1][1] += 1
+            n /= i
+    for i in range(5, int(n**0.5) + 1, 6):
+        plus2 = [i, i + 2]
+        for j in plus2:
+            if n % j == 0: facts.append([j, 0])
+            while n % j == 0:
+                facts[-1][1] += 1
+                n /= j
+    if n > 2: facts.append([int(n), 1])
+    return facts
     
 #Build a function that returns the amount
 #of divisors a given input has
-def countdivs(num):
-    return len(divisors(num))
+def tau(n):
+    f = factors(n)
+    return prod(i[1] + 1 for i in f)
 
 #Build a function that solves the problem
 def solve(num):
+    #Define variables
     start = time.time()
     i = 1
-    while countdivs(tri(i)) <= num:
-        i += 1
     
-    print 'The value of the first triangle number to have over '
-    print str(num) + ' divisors is ' + str(tri(i)) + '.'
-    print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
+    #Solve the problem
+    while tau(tri(i)) <= num:
+        i += 1
+      
+    ans = str(int(tri(i)))
+    n = str(num)
+    
+    #Print the results
+    print('The value of the first triangle number ')
+    print('to have over ' + n + ' divisors is ' + ans + '.')
+    print('This took ' + str(time.time() - start) + ' seconds to calculate.')
     
 #Find the greatest product of four adjacent numbers in the same direction in the grid
 num = 500
