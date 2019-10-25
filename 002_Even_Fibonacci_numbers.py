@@ -9,17 +9,21 @@ Link: https://projecteuler.net/problem=2'''
 #Imports
 import time
 
-#Sum of even fibonacci numbers function
-def EvenFibSum(n):
-    #Define variables
-    start = time.time()
+#Build an Even Fibonacci Sum function
+def efSum(n):
     fib = [1, 2]
-    
-    #Solve the problem
     while fib[-1] < n:
         fib.append(fib[-1] + fib[-2])
+    if fib[-1] >= n: fib = fib[:-1]
+    return sum(fib[i] for i in range(1, len(fib), 3))
+
+#Sum of even fibonacci numbers function
+def solve(n):
+    #Define variables
+    start = time.time()
     
-    ans = str(sum(fib[i] for i in range(1, len(fib), 3)))
+    #Solve the problem
+    ans = str(efSum(n))
     n = str(n)
         
     #Print the results
@@ -28,5 +32,5 @@ def EvenFibSum(n):
     print('This took ' + str(time.time() - start) + ' seconds to calculate.')
 
 #Run the program
-n = 4000000
-EvenFibSum(n)
+n = 4 * 10**6
+solve(n)
