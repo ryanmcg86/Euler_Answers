@@ -27,7 +27,6 @@ def inex(n, mults):
 def SumOfMults(n, mults):
     #Declare variables
     start = time.time()
-    multiples = set()
     strnums = ''
     
     #Solve the problem
@@ -38,7 +37,8 @@ def SumOfMults(n, mults):
             strnums = strnums[:-2]
             strnums += ' and ' + str(list(mults)[i])
             
-    if len(mults) == 1: strnums = str(list(mults)[0])
+    if len(mults) == 1: 
+        strnums = str(list(mults)[0])
     ans = str(inex(n, mults))
     n = str(n)
             
