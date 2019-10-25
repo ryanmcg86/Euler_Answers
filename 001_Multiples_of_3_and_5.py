@@ -12,7 +12,7 @@ from itertools import combinations as co
 #Build a Sum of Multiples function
 def SoM(num, mul):
     n = (num - 1) // mul
-    return (n * (n + 1) * mul) >> 1 #divide by 2 without rounding error
+    return (n * (n + 1) * mul) // 2
 
 #Build an inclusion-exclusion function
 def inex(n, mults):
