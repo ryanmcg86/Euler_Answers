@@ -16,7 +16,6 @@ Link: https://projecteuler.net/problem=14'''
 
 #Imports
 import time
-from operator import itemgetter as iget
 
 #Solve function
 def solve(lim):
@@ -36,7 +35,13 @@ def solve(lim):
             else: n = 3 * n + 1
             count += 1
             
-    ans = str(max(cache.items(), key = iget(1))[0])
+    largest = max(cache.values())
+    maxes = []
+    for key, value in cache.items():
+        if value == largest:
+            maxes.append(key)
+    
+    ans = str(max(maxes))
     l = str(cache[int(ans)])
     n = str(lim)
 
@@ -47,5 +52,5 @@ def solve(lim):
     print('This took ' + str(time.time() - start) + ' seconds to calculate.')
 
 #Run the program
-n = 1000000
+n = 10**6
 solve(n)
