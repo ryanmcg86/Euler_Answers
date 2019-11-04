@@ -10,7 +10,13 @@ Link: https://projecteuler.net/problem=24'''
 
 #Imports
 import time
-from itertools import permutations as p
+
+#Build a factorial function
+def fact(n):
+    ans = 1
+    for i in range(1, n + 1):
+        ans *= i
+    return ans
 
 #Build a suffix function
 def buildSuffix(num):
@@ -20,17 +26,22 @@ def buildSuffix(num):
     suffixes = [[1, 'st'], [2, 'nd'], [3, 'rd']]
     if str(num)[begin:end] != '1':
         for i in range(0, len(suffixes)):
-            if int(str(num)[-1]) == suffixes[i][0]:
+            if int(str(num)[-1]) == suffixes[i][0]
                 suff = suffixes[i][1]
     return suff
+
+#Build a perm function
+def perm(n, s):
+    if len(s) == 1: return s
+    q, r = divmod(n, fact(len(s) - 1))
+    return s[q] + perm(r, s[:q] + s[q + 1:])
 
 #Build a lexigraphic permutation function
 #that returns the nth lexigraphic permutation
 #of a given input of numbers 
 def lexiPermutation(digits, permCount):
     start     = time.time()
-    perm      = list(p(digits))
-    num       = int(''.join(str(digit) for digit in perm[permCount - 1]))
+    num       = perm(permCount - 1, digits)
     suff      = buildSuffix(permCount)
     permCount = str(permCount) + suff
     
@@ -38,6 +49,6 @@ def lexiPermutation(digits, permCount):
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
 
 #Run the program
-digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+digits = '0123456789'
 permCount = 1000000
 lexiPermutation(digits, permCount)
