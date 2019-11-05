@@ -6,7 +6,7 @@
 18  5  4  3 12
 17 16 15 14 13
 
-It can be verified that the sum of the numbers on the diagonals (21, 7, 1, 3, 13, 17, 4, 9, and 25) is 101.
+It can be verified that the sum of the numbers on the diagonals (21, 7, 1, 3, 13, 17, 5, 9, and 25) is 101.
 
 What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral formed in the same way?
 Link: https://projecteuler.net/problem=28'''
