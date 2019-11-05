@@ -16,8 +16,8 @@ import time
 
 #Build a spiralSum function
 def spiralSum(n):
-    if n % 2 != 0: s, a, b, c = (n - 1) // 2, 30, 26, 3
-    else:          s, a, b, c =  n      // 2,  6,  8, 0
+    if n % 2 != 0: s, a, b, c = (n - 1) // 2, 30, 26, 3 #odd
+    else:          s, a, b, c =  n      // 2,  6,  8, 0 #even
     return (16 * s**3 + a * s**2 + b * s + c) // 3
 
 
@@ -28,7 +28,8 @@ def answer(num):
     ans = str(spiralSum(num))
     grid = str(num) + ' by ' + str(num)
     
-    print 'The sum of the numbers on the diagonals in a ' + grid + ' spiral is ' + ans + '.'
+    print 'The sum of the numbers on the diagonals in a '
+    print grid + ' spiral is ' + ans + '.'
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
     
 #Run the program
