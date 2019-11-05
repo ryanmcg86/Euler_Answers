@@ -15,13 +15,11 @@ Link: https://projecteuler.net/problem=28'''
 import time
 
 #Build a spiralSum function
-def spiralSum(num):
-	total = 1
-	for i in range(3, num + 1, 2):
-		side = (i - 1)
-		for j in range(0, 4):
-			total += i**2 - (j * side)
-	return total
+def spiralSum(n):
+    if n % 2 != 0: s, a, b, c = (n - 1) // 2, 30, 26, 3
+    else:          s, a, b, c =  n      // 2,  6,  8, 0
+    return (16 * s**3 + a * s**2 + b * s + c) // 3
+
 
 #Build a answer function
 def answer(num):
