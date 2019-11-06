@@ -11,38 +11,29 @@ HINT: Some products can be obtained in more than one way so be sure to only incl
 Link: https://projecteuler.net/problem=32'''
 
 #Imports
-from itertools import permutations
 import time
 
 #Build a sum-of-products function
-def sumOfProds(digits):
-	start    = time.time()
-	total    = []
-	baseperm = list(range(1, digits + 1))
-	perms = list(permutations(baseperm))
+def sumOfProds(n):
+    #Declare variables
+    start = time.time()
+    panprods = set()
+    nums = '123456789'
+	
+    #Solve the problem
+    for i in range(2, 80):
+        for j in range(2, 10000 // i):
+            num = str(i) + str(j) + str(i * j)
+            if len(num) == n and not nums[:n].strip(num):
+			panprods.add(i * j)
+    ans = str(sum(panprods))
 
-	for i in range(0, len(perms)):
-		perm = ''.join(str(j) for j in perms[i])
-		for j in range(2, len(perms[i])):
-			for k in range(1, j):
-				num1 = int(perm[0:k])
-				num2 = int(perm[k:j])
-				num3 = int(perm[j:digits])
-				a = len(str(num1))
-				b = len(str(num2))
-				c = len(str(num3))
-				if a > c or b > c:
-					break
-				if num1 * num2 == num3:
-					total.append(num3)
-	total = set(total)
-	ans = str(sum(total))
-
-	print 'The sum of all products whose multiplicand/multiplier/product'
-	print 'identity can be written as a 1 though ' + str(digits)
-	print 'pandigital is ' + ans + '.'
-	print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
+    #Print the results
+    print('The sum of all products whose multiplicand/')
+    print('multiplier/product identity can be written ')
+    print('as a 1 though ' + n + ' pandigital is ' + ans + '.')
+    print('This took ' + str(time.time() - start) + ' seconds to calculate.')
 
 #Run the program			
-digits = 9
-sumOfProds(digits)
+n = 9
+sumOfProds(n)
