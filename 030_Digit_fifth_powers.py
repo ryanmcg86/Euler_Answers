@@ -12,6 +12,7 @@ Link: https://projecteuler.net/problem=30'''
 
 #Imports
 import time
+from itertools import combinations_with_replacement as cwr
 
 #Build a suffix function
 def buildSuffix(num):
@@ -25,26 +26,29 @@ def buildSuffix(num):
                    suff = suffixes[i][1]
     return suff
 
-#Build an isPower function
-def isPower(num, power):
-    return num == sum(int(digit)**power for digit in str(num))
+#Build a sum of power digits for exponent function
+def sopdfe(ex):
+    s, p = 0, {str(i):i**ex for i in range(10)}
+    if ex >= 5: ex += 1
+    for cx in cwr('0123456789', ex):
+        t  = sum(p[x] for x in cx)
+        sd = sum(p[x] for x in str(t))
+        if t == sd and t > 9: s += t
+    return (s if s > 0 else "NONE")   
 
 #Build a answer function
 def answer(power):
-    start = time.time()
-    
-    powers = []
-    
-    for i in range(10, 9**(power + 1) + 1):
-        if isPower(i, power):
-            powers.append(i)
-            
-    suff = buildSuffix(power)
-    power = str(power) + suff
-    
-    print 'The sum of all the numbers that can be written as the sum of ' 
-    print power + ' powers of their digits is ' + str(sum(powers)) + '.'
-    print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
+    start, ps = time.time(), str(sopdfe(power))
+    p = str(power) + buildSuffix(power) + ' powers of their digits'
+
+    if ps == 'NONE':
+        print('There are no numbers that can be written ')
+        print('as the sum of ' + p + '.')
+    else:
+        print('The sum of all the numbers that can be written ') 
+        print('as the sum of ' + p + ' is ' + ps + '.')
+
+    print('This took ' + str(time.time() - start) + ' seconds to calculate.')
     
 #Run the program
 power = 5
