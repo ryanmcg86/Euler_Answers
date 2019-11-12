@@ -47,7 +47,7 @@ Solve()
 where we only have numbers of r length (so we're choosing r digits from the 0-9 pool, with repeats), 
 can be calculated with the following formula:
 
-(r + n - 1)! / r!(n - 1)!
+(n + r - 1)! / r!(n - 1)!
 
 For numbers of length 2 through 7, the following amount of combinations are created:
 2: 55
@@ -64,5 +64,11 @@ numbers with more than 7 digits to have the sum of the factorials of their digit
 
 The sum of all the combinations for numbers ranging in length from 2 digits to 7 digits is 19437, or
 
-Σ i = 2, 7 for (10 + i - 1)! / 10!(i - 1)!
+Σ i = 2, 7 for (10 + i - 1)! / i!(10 - 1)!
+
+or, in python:
+
+def fact(n): return fact(n - 1) * n if n > 1 else 1
+def comb(n, r): return fact(n + r - 1) // (fact(r) * fact(n - 1))
+print(sum(comb(10, r) for r in range(2, 8)))
 '''
