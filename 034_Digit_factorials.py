@@ -6,42 +6,37 @@ Note: as 1! = 1 and 2! = 2 are not sums they are not included.
 Link: https://projecteuler.net/problem=34'''
 
 #Imports
-from itertools import combinations_with_replacement as cwr
 import time
-import math
+from itertools import combinations_with_replacement as cwr
 
-#Build a Solve function
-def Solve():
+def fact(n):
+    return fact(n - 1) * n if n > 1 else 1
+
+#Build a solve function
+def solve():
+    #Declare variables
     start = time.time()
-
-    facts = []
-    total = 0
+    facts, ans = [[i, fact(i)] for i in range(10)], 0
     
-    for i in range(0, 10):
-        facts.append([i, math.factorial(i)])
-        
+    #Solve the problem    
     for digits in range(2, 8):
         #Rather than testing every number up to 9! * 7,
         #I only test every combination of digits 0-9 (repeats allowed)
         #for each length of number up to (and including) 7.
         #19437 < 2540160, and therefore runs much faster.
-        for comb in cwr(facts, digits):
-            comb = list(comb)
+        for comb in list(cwr(facts, digits)):
             num = ''.join(str(i[0]) for i in comb)
             sumfacts = sum(i[1] for i in comb)
             #Since we're not checking every number, I can only confirm
             #it's a match if I sort both numbers, and then check for equality.
-            if sorted(str(sumfacts)) == sorted(num):
-                total += sumfacts
-                
-    total = str(total)
+            if sorted(str(sumfacts)) == sorted(num): ans += sumfacts
 
-    print 'The sum of all numbers which are equal to '
-    print 'the sum of the factorial of their digits is ' + total + '.'
+    print 'The sum of all numbers which are equal to the '
+    print 'sum of the factorial of their digits is ' + str(ans) + '.'
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
 
 #Run the program			
-Solve()
+solve()
 
 '''As an aside, the amount of distinct combinations of the n = 10 digits (0-9), 
 where we only have numbers of r length (so we're choosing r digits from the 0-9 pool, with repeats), 
