@@ -20,23 +20,23 @@ def solve():
     
     #Solve the problem    
     for digits in range(2, 8):
-        #Rather than testing every number up to 9! * 7,
-        #I only test every combination of digits 0-9 (repeats allowed)
-        #for each length of number up to (and including) 7.
-        #19437 < 2540160, and therefore runs much faster.
-        for comb in list(cwr(facts, digits)):
+        for comb in list(cwr(facts, digits)):                        #Note 1
             num = ''.join(str(i[0]) for i in comb)
             sumfacts = sum(i[1] for i in comb)
-            #Since we're not checking every number, I can only confirm
-            #it's a match if I sort both numbers, and then check for equality.
-            if sorted(str(sumfacts)) == sorted(num): ans += sumfacts
+            if sorted(str(sumfacts)) == sorted(num): ans += sumfacts #Note 2
 
+    #Print the results
     print 'The sum of all numbers which are equal to the '
     print 'sum of the factorial of their digits is ' + str(ans) + '.'
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
 
 #Run the program			
 solve()
+
+#Note 1: Rather than testing every number up to 9! * 7, I only test every combination of digits 0-9 (repeats allowed)
+#for each length of number up to (and including) 7. 19437 < 2540160, and therefore runs much faster.
+
+#Note 2: Since we're not checking every number, I can only confirm it's a match if I sort both numbers, and then check for equality.
 
 '''As an aside, the amount of distinct combinations of the n = 10 digits (0-9), 
 where we only have numbers of r length (so we're choosing r digits from the 0-9 pool, with repeats), 
