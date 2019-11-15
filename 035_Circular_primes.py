@@ -38,30 +38,29 @@ def isCircular(n):
     orig = str(n)
     num = orig[1:] + orig[:1]
     prime = isPrime(int(num))
-    if not prime:
-        return False
+    if not prime: return False
     while prime and num != orig:
         num = num[1:] + num[:1]
         prime = isPrime(int(num))
-        if not prime:
-            return False
+        if not prime: return False
     return True
 
 #Build a Solve function
 def Solve(num):
+    #Define variables
     start = time.time()
+    sieve, count = SoE(num), 0
     
-    sieve = SoE(num)
-    count = 0
+    #Solve the problem
     for prime in sieve:
-        if isCircular(prime):
-            count += 1
+        if isCircular(prime): count += 1
         
-    count = str(count)
+    count, num = str(count), str(num)
     
-    print 'There are ' + count + ' circular primes below ' + str(num) + '.'
-    print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
+    #Print the results
+    print('There are ' + count + ' circular primes below ' + num + '.')
+    print('This took ' + str(time.time() - start) + ' seconds to calculate.')
 
 #Run the program
-num = 1000000
+num = 10**6
 Solve(num)
