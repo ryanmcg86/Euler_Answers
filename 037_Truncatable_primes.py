@@ -13,12 +13,9 @@ import time
 
 #Build an isPrime function
 def isPrime(n):
-    if n <= 1:
-        return False
-    if n <= 3:
-        return True
-    if n % 2 == 0 or n % 3 == 0:
-        return False
+    if n < 2: return False
+    if n < 4: return True
+    if n % 2 == 0 or n % 3 == 0: return False
     i = 5
     while i * i <= n:
         if n % i == 0 or n % (i + 2) == 0:
@@ -28,17 +25,14 @@ def isPrime(n):
     
 #Build an isTruncatable function
 def isTruncatable(n):
-    if isPrime(n) == False:
-        return False
+    if isPrime(n) == False: return False
     num = str(n)[1:]
     while num != '':
-        if isPrime(int(num)) == False:
-            return False
+        if isPrime(int(num)) == False: return False
         num = num[1:]
     num = str(n)[:-1]
     while num != '':
-        if isPrime(int(num)) == False:
-            return False
+        if isPrime(int(num)) == False: return False
         num = num[:-1]
     return True
 
@@ -48,7 +42,7 @@ def Solve(num):
     total = 0
     count = 0
     i = 11
-    while count < 11:
+    while count < num:
         if isTruncatable(i):
             count += 1
             total += i
@@ -64,4 +58,5 @@ def Solve(num):
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
     
 #Run the program
+num = 11
 Solve()
