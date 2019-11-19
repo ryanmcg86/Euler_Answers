@@ -10,12 +10,9 @@ import time
 
 #Build an isPrime function
 def isPrime(n):
-    if n <= 1:
-        return False
-    if n <= 3:
-        return True
-    if n % 2 == 0 or n % 3 == 0:
-        return False
+    if n < 2: return False
+    if n < 4: return True
+    if n % 2 == 0 or n % 3 == 0: return False
     i = 5
     while i * i <= n:
         if n % i == 0 or n % (i + 2) == 0:
@@ -27,9 +24,7 @@ def isPrime(n):
 def Solve():
     #Define variables
     start  = time.time()
-    digits = []
-    pans   = []
-    primes = []
+    digits, pans, primes = [], [], []
     
     #Create the pandigitals to test
     #Note: 9 and 8-digit pandigitals can't be prime 
@@ -44,9 +39,8 @@ def Solve():
             pans.append(num)
     
     #Find the prime pandigitals
-    for i in range(0, len(pans)):
-        if isPrime(pans[i]):
-            primes.append(pans[i])
+    for i in range(len(pans)):
+        if isPrime(pans[i]): primes.append(pans[i])
     
     #Find the largest prime pandigital
     ans = str(max(primes))
