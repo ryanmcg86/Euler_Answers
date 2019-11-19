@@ -40,7 +40,7 @@ def solve(filename):
 
     #Count all the scores that are triangle scores
     for i in scores:
-        if n(i) != 1: counter += 1
+        if n(i) != -1: counter += 1
 	
     #Print the results
     print 'There are ' + str(counter) + ' triangle words in the file.'
