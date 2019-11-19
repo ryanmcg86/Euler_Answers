@@ -15,14 +15,12 @@ import time
 #Build a Champernowne function
 def Champernowne():
     start = time.time()
-    
-    num = ''
-    i = 1
-    while len(num) < 1000000:
+    num, i, ans = '', 1, 1
+
+    while len(num) < 10**6:
         num += str(i)
         i += 1
-    
-    ans = 1
+
     for i in range(7):
         ans *= int(num[10**i - 1])
     
