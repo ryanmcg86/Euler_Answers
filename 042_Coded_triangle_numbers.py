@@ -28,18 +28,13 @@ def wordValue(word):
 def solve(filename):
     #Declare variables
     start        = time.time()
-    scores       = []
-    triScores    = []
-    n            = 1
-    largestScore = 0
-    counter      = 0
+    scores, triScores, n, largestScore, counter = [], [], 1, 0, 0
 
     #Build the word list
     words = list(open(filename, 'r').read().replace('"', '').split(','))
 
     #Calculate and collect all the scores
-    for i in words:
-        scores.append(wordValue(i))
+    for i in words: scores.append(wordValue(i))
 
     #Define the highest score
     largestScore = max(scores)
@@ -51,8 +46,7 @@ def solve(filename):
 
     #Count all the scores that are triangle scores
     for i in scores:
-        if i in triScores:
-            counter += 1
+        if i in triScores: counter += 1
 	
     #Print the results
     print 'There are ' + str(counter) + ' triangle words in the file.'
