@@ -23,7 +23,7 @@ def Champernowne():
         i += 1
     
     ans = 1
-    for i in range(0, 7):
+    for i in range(7):
         ans *= int(num[10**i - 1])
     
     ans = str(ans)
