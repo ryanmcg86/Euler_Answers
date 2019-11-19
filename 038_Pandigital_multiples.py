@@ -24,10 +24,7 @@ def isPan(n):
 #Build a Solve function
 def Solve():
     start = time.time()
-    
-    values   = []
-    largest  = 0
-    maxindex = 0
+    values, largest, maxindex = [], 0, 0
     
     #We go as high as 4 digits b/c n must
     #be at least 2, and concatenating two
@@ -45,17 +42,17 @@ def Solve():
             if isPan(int(num)):
                 values.append([i, j, int(num)])
                 
-    for i in range(0, len(values)):
+    for i in range(len(values)):
         if values[i][2] > largest:
             maxindex = i
             largest = values[i][2]
             
     a = str(values[maxindex][0])
-    b = str(values[maxindex][1])
+    b = '1 through ' + str(values[maxindex][1]) + ' is ' 
     c = str(values[maxindex][2])
     
-    print 'The concatenated product of ' + a + ' and 1 through ' + b + ' is ' + c + ', '
-    print 'which is the largest 1 to 9 pandigital 9-digit number that can be formed  '
+    print 'The concatenated product of ' + a + ' and ' + b + c + ', which '
+    print 'is the largest 1 to 9 pandigital 9-digit number that can be formed  '
     print 'as the concatenated product of an integer with (1,2, ... , n) where n > 1.'
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
     
