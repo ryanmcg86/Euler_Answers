@@ -22,30 +22,30 @@ def solve():
 	#Define variables
 	start       = time.time()
 	total       = 0
-	digits      = {str(i) for i in range(0, 10)}
+	digits      = {str(i) for i in range(10)}
 	#Include 1 with the primes, as we have
 	#to add a leading digit 7 total times.
 	primes      = [13, 11, 7, 5, 3, 2, 1]
 	pandigitals = []
     
-	#Start with the 3 digit numbers divisible by 17,
+        #Start with the 3 digit numbers divisible by 17,
 	#GREATLY reducing the numbers we need to check
-	for i in range(102, 983, 17):
+        for i in range(102, 983, 17):
 		num = str(i)
 		#if the number has 3 unique digits, add it to the list
 		if len(set(num)) == len(num):
 			pandigitals.append(num)
      
-	for p in primes:
+        for p in primes:
 		temp = []
 		for valids in pandigitals:
 			nums = list(digits - set(valids))
 			#Add each of the remaining digits not in 
-			#n to the front of n, and see if it's
+			#nums to the front of nums, and see if it's
 			#divisible by p. If it is, add it to temp
 			for num in nums:
 				new = num + valids
-				if int(new[0:3]) % p == 0:
+				if int(new[:3]) % p == 0:
 					temp.append(str(new))
 		#Replace the current pandigitals with
 		#the updated possible numbers
