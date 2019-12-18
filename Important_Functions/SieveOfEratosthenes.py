@@ -9,6 +9,4 @@ def SoE(n):
             for i in range(p * 2, n + 1, p): 
                 prime[i] = False
         p += 1
-    for p in range(n + 1): 
-        if prime[p]: ans.append(p)
-    return ans
+    return [i for i in range(n) if prime[i]]
