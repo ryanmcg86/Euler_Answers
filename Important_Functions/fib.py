@@ -7,5 +7,5 @@ def fib(n):
     if n % 2 == 0:
         fibs[n] = ((2 * fib((n / 2) - 1)) + fib(n / 2)) * fib(n / 2)
     else:
-        fibs[n] = (fib((n - 1) / 2)**2) + (fib((n + 1) / 2)**2)
+        fibs[n] = fib((n - 1) / 2)**2 + fib((n + 1) / 2)**2
     return fibs[n]
