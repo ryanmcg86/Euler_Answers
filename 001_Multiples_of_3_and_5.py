@@ -16,12 +16,23 @@ def SoM(num, mul):
 
 #Build an inclusion-exclusion function
 def inex(n, mults):
-    num = -1
-    ans = 0
+    num, ans = -1, 0
     for i in range(1, len(mults) + 1):
         for j in co(mults, i):
             ans += num**(i + 1) * SoM(n, prod(list(j)))
     return ans
+
+#Build a toString function
+def toString(mults):
+    if len(mults) == 1: return str(mults[0])
+    strnums = ''
+    for i in range(len(mults)):
+        if i != len(mults) - 1:
+            strnums += str(list(mults)[i]) + ', '
+        else:
+            strnums = strnums[:-2]
+            strnums += ' and ' + str(list(mults)[i])
+    return strnums
 
 #Sum of multiples (of 3 and 5) function
 def SumOfMults(n, mults):
@@ -30,16 +41,8 @@ def SumOfMults(n, mults):
     strnums = ''
     
     #Solve the problem
-    for i in range(len(mults)):
-        if i != len(mults) - 1:
-            strnums += str(list(mults)[i]) + ', '
-        else:
-            strnums = strnums[:-2]
-            strnums += ' and ' + str(list(mults)[i])
-            
-    if len(mults) == 1: 
-        strnums = str(list(mults)[0])
     ans = str(inex(n, mults))
+    strnums = toString(mults)
     n = str(n)
             
     #Print the results
