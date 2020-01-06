@@ -43,12 +43,10 @@ def SumOfMults(n, mults):
     
     #Solve the problem
     ans = str(inex(n, mults))
-    strnums = toString(mults)
-    n = str(n)
             
     #Print the results
     print('The sum of all of the multiples of ')
-    print(strnums + ' below ' + n + ' is ' + ans + '.')
+    print(toString(mults) + ' below ' + str(n) + ' is ' + ans + '.')
     print('This took ' + str(time.time() - start) + ' seconds to calculate.')
 
 #Run the program
