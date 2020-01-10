@@ -6,14 +6,10 @@ Link: https://projecteuler.net/problem=16'''
 #Imports
 import time
 
-#Build a Sum-of-Digits function
-def SumDigits(base, exp):
-    return sum(int(i) for i in str(base**exp))
-
 #Solution function
-def Solution(base, exp):
+def solve(base, exp):
     start = time.time()
-    ans = str(SumDigits(base, exp))
+    ans = str(sum(int(i) for i in str(base**exp)))
     num = str(base) + '^' + str(exp)
     
     print 'The sum of the digits of the number ' + num + ' is ' + ans + '.'
@@ -22,4 +18,4 @@ def Solution(base, exp):
 #Run the program
 base = 2
 exp = 1000
-Solution(base, exp)
+solve(base, exp)
