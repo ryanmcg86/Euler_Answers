@@ -8,12 +8,16 @@ import time
 
 #Solution function
 def solve(base, exp):
+    #Declare variables
     start = time.time()
-    ans = str(sum(int(i) for i in str(base**exp)))
     num = str(base) + '^' + str(exp)
     
-    print 'The sum of the digits of the number ' + num + ' is ' + ans + '.'
-    print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
+    #Solve the problem
+    ans = str(sum(int(i) for i in str(base**exp)))
+    
+    #Print the results
+    print('The sum of the digits of the number ' + num + ' is ' + ans + '.')
+    print('This took ' + str(time.time() - start) + ' seconds to calculate.')
 
 #Run the program
 base = 2
