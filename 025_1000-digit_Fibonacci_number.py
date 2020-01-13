@@ -29,10 +29,10 @@ import time
 def findIndex(digits):
     #Declare variables
     start = time.time()
-    fib, ans = [1, 1], 2
+    fib, ans = [1, 1], 1
     
     #Solve the problem
-    while len(str(fib[1])) < digits:
+    while len(str(fib[0])) < digits:
         fsum = sum(fib)
         fib[0] = fib[1]
         fib[1] = fsum
