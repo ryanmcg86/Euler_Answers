@@ -22,32 +22,29 @@ Link: https://projecteuler.net/problem=25'''
 
 #Imports
 import time
-    
-#Build an add-the-next-Fibonacci-number function
-def addFib(fib):
-    size = len(fib)
-    a = fib[size - 1]
-    b = fib[size - 2]
-    fib.append(a + b)
-    
- #Build a most-recent-fib-term's-length function
- def mrftl(fib):
-     return len(str(fib[len(fib) - 1]))
 
 #Build a find-nth-index function, where the nth
 #index is the first Fibonacci # with an inputted
 #amount of digits
-def findIndex(fib, digitlen):
+def findIndex(digits):
+    #Declare variables
     start = time.time()
+    fib, ans = [1, 1], 2
     
-    while mrftl(fib) < digitlen:
-        addFib(fib)
+    #Solve the problem
+    while len(str(fib[1])) < digits:
+        fsum = sum(fib)
+        fib[0] = fib[1]
+        fib[1] = fsum
+        ans += 1
         
-    print 'The index of the first term in the Fibonacci sequence '
-    print 'to contain ' + str(digitlen) + ' digits is ' + str(len(fib)) + '.'
-    print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
+    ans, d = str(ans), str(digits)
+        
+    #Print the results
+    print('The index of the first term in the Fibonacci ')
+    print('sequence to contain ' + d + ' digits is ' + ans + '.')
+    print('This took ' + str(time.time() - start) + ' seconds to calculate.')
 
 #Run the program
-fib = [1, 1]
-digitlen = 1000
-findIndex(fib, digitlen)
+digits = 1000
+findIndex(digits)
