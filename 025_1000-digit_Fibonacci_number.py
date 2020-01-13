@@ -32,7 +32,7 @@ def findIndex(digits):
     fib, ans = [1, 1], 1
     
     #Solve the problem
-    while len(str(fib[0])) < digits:
+    while fib[0] // 10**(digits - 1) < 1:
         fsum = sum(fib)
         fib[0] = fib[1]
         fib[1] = fsum
