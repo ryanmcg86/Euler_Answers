@@ -10,16 +10,12 @@ Link: https://projecteuler.net/problem=49'''
 
 #Imports
 import time
-from itertools import permutations as p
 
 #Build an isPrime function
 def isPrime(n):
-    if n <= 1:
-        return False
-    if n <= 3:
-        return True
-    if n % 2 == 0 or n % 3 == 0:
-        return False
+    if n < 2: return False
+    if n < 4: return True
+    if n % 2 == 0 or n % 3 == 0: return False
     i = 5
     while i * i <= n:
         if n % i == 0 or n % (i + 2) == 0:
@@ -31,35 +27,27 @@ def isPrime(n):
 def solve():
     #Declare variables
     start = time.time()
-    ans = ''
+    ps, defaultFound, ans = [], False, ''
     
-    for i in range(1000, 10000):
-        primes = []
-        
-        for number in p(str(i)):
-            num = int(''.join(digit for digit in number))
-            if isPrime(num):
-                primes.append(num)
-                
-        primes = list(set(primes))
-        relevantPrimes = []
-        
-        for a in range(0, len(primes) - 1):
-            for b in range(a + 1, len(primes)):
-                if abs(primes[a] - primes[b]) == 3330:
-                    relevantPrimes.append(primes[a])
-                    relevantPrimes.append(primes[b])
-                    
-        relevantPrimes = sorted(list(set(relevantPrimes)))
-        ans = ''.join(str(j) for j in relevantPrimes)
-        
-        if len(ans) == 12 and ans != '148748178147':
-            break
+    #Solve the problem
+    for i in range(10**3 + 1, 10**4 - (3330 * 2), 2):
+        if isPrime(i):
+            if isPrime(i + 3330):
+                if isPrime(i + (3330 * 2)):
+                    ps.append([i, i + 3330, i + (3330 * 2)])
+    for i in ps:
+        a = sorted(str(i[0]))
+        b = sorted(str(i[1]))
+        c = sorted(str(i[2]))
+        if a == b == c:
+            temp = str(i[0]) + str(i[1]) + str(i[2])
+            if temp != '148748178147':
+                ans = temp
 
     #Print the results
-    print 'The 12-digit number formed by concatenating '
-    print 'the three terms in this sequence is ' + ans + '.'
-    print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
+    print('The 12-digit number formed by concatenating ')
+    print('the three terms in this sequence is ' + ans + '.')
+    print('This took ' + str(time.time() - start) + ' seconds to calculate.')
 
 #Run the program
 solve()
