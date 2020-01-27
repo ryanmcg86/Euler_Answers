@@ -11,8 +11,8 @@ from math import prod
 from itertools import combinations as co
 
 #Build a Sum of Multiples function
-def SoM(num, mul):
-    n = (num - 1) // mul
+def SoM(lim, mul):
+    n = (lim - 1) // mul
     return (n * (n + 1) * mul) // 2
 
 #Build an inclusion-exclusion function
