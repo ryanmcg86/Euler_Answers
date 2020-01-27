@@ -27,14 +27,17 @@ def isPrime(n):
 def solve():
     #Declare variables
     start = time.time()
-    ps, defaultFound, ans = [], False, ''
+    ps, defaultFound, ans, i = [], False, '', 10**3 + 1
     
     #Solve the problem
-    for i in range(10**3 + 1, 10**4 - (3330 * 2), 2):
+    while i < 10**4 - (3330 * 2):
         if isPrime(i):
             if isPrime(i + 3330):
                 if isPrime(i + (3330 * 2)):
                     ps.append([i, i + 3330, i + (3330 * 2)])
+        if i % 6 == 5: i += 2
+        else: i += 4
+            
     for i in ps:
         a = sorted(str(i[0]))
         b = sorted(str(i[1]))
