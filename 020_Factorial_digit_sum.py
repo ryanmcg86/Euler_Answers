@@ -9,22 +9,26 @@ Link: https://projecteuler.net/problem=20'''
 #Imports
 import time
 
+#Build a factorial function
+def fact(n):
+    return fact(n - 1) * n if n > 1 else 1
+
 #Build a sum-of-factorial-digits function
 def sumOfFactorialDigits(num):
-    fact = 1
-    for i in range(1, num + 1):
-        fact *= i
-    return sum(int(i) for i in str(fact))
+    return sum(int(i) for i in str(fact(num)))
 
 #Solution function
-def Solution(num):
+def solve(num):
+    #Declare the variables
     start = time.time()
     
-    ans = str(sumOfFactorialDigits(num))
+    #Solve the problem
+    ans, n = str(sumOfFactorialDigits(num)), str(num)
     
-    print 'The sum of the digits in the number ' + str(num) + '! is ' + ans + '.'
-    print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
+    #Print the results
+    print('The sum of the digits in the number ' + n + '! is ' + ans + '.')
+    print('This took ' + str(time.time() - start) + ' seconds to calculate.')
 
 #Run the program
 num = 100
-Solution(num)
+solve(num)
