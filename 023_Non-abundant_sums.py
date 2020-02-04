@@ -24,7 +24,7 @@ def isAbundant(n):
         if n % i == 0:
             pd.append(i)
             pd.append(n // i)
-    return sum(pd) > n
+    return sum(set(pd)) > n
 
 #Solution function
 def solve():
@@ -44,7 +44,7 @@ def solve():
     
     #Print the results
     print('The sum of all the positive integers which cannot be ')
-    print('written as the sum of two abundant numbers is ' + total)
+    print('written as the sum of two abundant numbers is ' + total + '.')
     print('This took ' + str(time.time() - start) + ' seconds to calculate.')
 
 #Run the program
