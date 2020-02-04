@@ -65,5 +65,4 @@ def solve():
     print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
 
 #Run the program
-limit = 5000
-solve(limit)
+solve()
