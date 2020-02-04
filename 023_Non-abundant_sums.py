@@ -17,18 +17,14 @@ Link: https://projecteuler.net/problem=23'''
 #Imports
 import time
 
-#Build a proper divisor function
-def pd(n):
+#Build an is Abundant function
+def isAbundant(n):
     pd = [1]
     for i in range(2, int(n**0.5) + 1):
         if n % i == 0:
             pd.append(i)
-            pd.append(n / i)
-    return set(pd)
-    
-#Build an isAbundant function
-def isAbundant(n):
-    return sum(pd(n)) > n
+            pd.append(n // i)
+    return sum(pd) > n
 
 #Solution function
 def solve():
@@ -44,12 +40,12 @@ def solve():
             if i + j <= num:
                 nums[i + j] = 1
                 
-    total = sum(i for i in range(1, num + 1) if nums[i] == 0)
+    total = str(sum(i for i in range(1, num + 1) if nums[i] == 0))
     
     #Print the results
-    print 'The sum of all the positive integers which cannot be '
-    print 'written as the sum of two abundant numbers is ' + str(total)
-    print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
+    print('The sum of all the positive integers which cannot be ')
+    print('written as the sum of two abundant numbers is ' + total)
+    print('This took ' + str(time.time() - start) + ' seconds to calculate.')
 
 #Run the program
-solution()
+solve()
