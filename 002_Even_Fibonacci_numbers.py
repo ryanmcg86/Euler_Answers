@@ -10,27 +10,44 @@ Link: https://projecteuler.net/problem=2'''
 import time
 
 #Build an Even Fibonacci Sum function
-def efSum(n):
-    fib = [1, 2]
-    while fib[-1] < n:
-        fib.append(fib[-1] + fib[-2])
-    if fib[-1] >= n: fib = fib[:-1]
-    return sum(fib[i] for i in range(1, len(fib), 3))
+def evenSum(lim):
+    ans, fib = 0, [0, 2]
+    while fib[1] < lim:
+        temp = fib[0]
+        fib[0] = fib[1]
+        fib[1] = 4 * fib[0] + temp
+        ans += fib[0]
+    return ans
 
 #Sum of even fibonacci numbers function
-def solve(n):
+def solve(lim):
     #Define variables
     start = time.time()
     
     #Solve the problem
-    ans = str(efSum(n))
-    n = str(n)
+    ans, lim = str(evenSum(lim)), str(lim)
         
     #Print the results
     print('The sum of the even-valued terms in the Fibonacci ')
-    print('sequence below ' + n + ' is ' + ans + '.')
+    print('sequence below ' + lim + ' is ' + ans + '.')
     print('This took ' + str(time.time() - start) + ' seconds to calculate.')
 
 #Run the program
-n = 4 * 10**6
-solve(n)
+lim = 4 * 10**6
+solve(lim)
+
+'''It can be shown that every 3rd number in the Fibonacci sequence is even. The addition of two numbers will 
+only ever result in an even numbers if both numbers are even, or if both numbers are odd. The Fibonacci sequence 
+starts with 0 and 1. The first result is 1, which is odd. The second result is 2 (1 + 1.. two odd numbers being summed), 
+an even number. Since the first result was odd, adding 2 to the first result will give us our third result, which is 
+another odd number, in this case 3 (1 + 2). The fourth result will also be odd since it's still utilizing the second
+result (our first even result) and adding it our our third result, which was odd. The fourth result comes to 5 (2 + 3). 
+Now, our fifth result will again be even, as we're adding two odd numbers, our third and fourth results, 3 and 5, which is 8. 
+This pattern continues infinitely every 3 results, starting with the second result in the Fibonacci sequence.
+
+By looking at the numbers in this new sequence (0, 2, 8, 34, 144, 610...), we can generalize a pattern to arrive at the nth
+even Fibonacci number:
+
+EF(n) = 4 * EF(n - 1) + EF(n - 2), where EF(0) = 0, and EF(1) = 2.
+
+This formula allows us to only calculate the even Fibonacci numbers, and find out answer much more efficiently.'''
