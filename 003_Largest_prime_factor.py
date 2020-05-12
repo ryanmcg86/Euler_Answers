@@ -7,21 +7,18 @@ Link: https://projecteuler.net/problem=3'''
 import time
 
 #Build a factors function
-def factors(n):
-    factors = []
-    for i in range(2, 4):
-        while n % i == 0:
-            factors.append(i)
-            n /= i
-    for i in range(5, int(n**0.5) + 1, 6):
-        plus2 = [i, i + 2]
-        for j in plus2:
-            while n % j == 0:
-                factors.append(j)
-                n /= j
-    if n > 2:
-        factors.append(n)
-    return factors
+def factors(num):
+	factors, p = [], 2
+	while p**2 <= num:
+		if num % p == 0:
+			factors.append(p)
+			num //= p
+		else:
+			if p > 3 and (p + 1) % 6 != 0: p += 4
+			elif p > 2: p += 2
+			else: p += 1
+	if num > 2: factors.append(num)
+	return factors
 
 #Largest prime factor function
 def lpf(n):
