@@ -15,8 +15,8 @@ def lcm(a, b):
     return a1 * b1 // a
 
 #lcm function for more than 2 numbers
-def lcms(n):
-    return reduce(lcm, [i for i in range(1, n + 1)])
+def lcms(nums):
+    return reduce(lcm, [i for i in nums])
 
 #Run function
 def run(n):
@@ -24,11 +24,11 @@ def run(n):
     start = time.time()
     
     #Solve the problem
-    ans = str(lcms(n))
+    ans, n = str(lcms([i for i in range(1, n + 1)])), str(n)
             
     #Print the results
     print('The smallest positive number that is evenly divisible ')
-    print('by all of the numbers from 1 to ' + str(n) + ' is ' + ans + '.')
+    print('by all of the numbers from 1 to ' + n + ' is ' + ans + '.')
     print('This took ' + str(time.time() - start) + ' seconds to calculate.')
     
 #Run the program
