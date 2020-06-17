@@ -31,62 +31,62 @@ def isPrime(n):
         if n % i == 0 or n % (i + 2) == 0:
             return False
         i += 6
-    return Tru
+    return True
+
+#Build a Sieve of Eratosthenes function 
+def SoE(n): 
+    prime = [False] * 2 + [True for i in range(n - 1)]
+    ans, p = [], 2
+    while p**2 <= n: 
+        if prime[p]: 
+            for i in range(p * 2, n + 1, p): 
+                prime[i] = False
+        p += 1
+    return [i for i in range(n) if prime[i]]
 
 #Build a function that returns the product
 #of the coefficients, a and b, for the quadratic
 #expression that produces the maximum number
 #of primes for consecutive values of n, starting with
 #n = 0.
-def ProdOfCoefficients(posRange):
+def PoC(posRange):
+    #Declare Variabeles
     start = time.time()
-    
-    maxN = 0
-    maxA = 0
-    maxB = 0
+    maxN, maxA, maxB, sign = 0, 0, 0, '+ '
     
     #When n = 0, n^2 + a * n + b simplifies to simply, b.
     #Since the result needs to be prime, the b's range isn't
     #-(posRange) to posRange, instead, it is the primes from
     #2 to posRange.
-    possibleBs = [2, 3]
-    for i in range(5, posRange, 6):
-        if isPrime(i):
-            possibleBs.append(i)
-        if isPrime(i + 2):
-            possibleBs.append(i + 2)
-            
+    possibleBs = SoE(posRange)
+    
+    #Solve the problem
     for a in range(-posRange + 1, posRange):
         for b in possibleBs:
             #When n = 1, the function simplifies to 1 + a + b
             #So this check saves us some work below
             if not isPrime(1 + a + b):
                 continue
-            n = 0
+            n = 2
             function = n**2 + a * n + b
             while isPrime(function):
                 n += 1
                 function = n**2 + a * n + b
             if n > maxN:
-                maxN = n
-                maxA = a
-                maxB = b
+                maxN, maxA, maxB = n, a, b
                 
-    print 'The product of the coefficients, a and b, for '
-    print 'the quadratic expression that produces the maximum '
-    print 'number of primes for consecutive values of n, '
-    print 'starting with n = 0, is ' + str(maxA * maxB) + '.\n'
-    sign = '+ '
-    if maxA < 0:
-        sign = '- '
-        maxA = -1 * maxA
-    print 'The quadratic expression was n^2 ' + sign + str(maxA) + '*n + ' + str(maxB) + ', '
-    if sign == '- ':
-        maxA = -1 * maxA
-    print 'where a = ' + str(maxA) + ' and b = ' + str(maxB) + ', and it produces '
-    print str(maxN) + ' consecutive primes starting with n = 0.\n'
-    print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
+    maxN, maxA, maxB, ans = str(maxN), str(maxA), str(maxB), str(maxA * maxB)
+	exp = 'n^2 + ' + maxA + '*n + ' + maxB
+                
+    print('The product of the coefficients, a and b, for ')
+	print('the quadratic expression that produces the maximum ')
+	print('number of primes for consecutive values of n, ')
+	print('starting with n = 0, is ' + ans + '.\n')
+	print('The quadratic expression was ' + exp + ', ')
+	print('where a = ' + maxA + ' and b = ' + maxB + ', and it produces ')
+	print(maxN + ' consecutive primes starting with n = 0.\n')
+	print('This took ' + str(time.time() - start) + ' seconds to calculate.')
 
 #Run the program
 posRange = 1000
-ProdOfCoefficients(posRange)
+PoC(posRange)
