@@ -55,9 +55,10 @@ def PoC(posRange):
     maxN, maxA, maxB, sign = 0, 0, 0, '+ '
     
     #When n = 0, n^2 + a * n + b simplifies to simply, b.
-    #Since the result needs to be prime, the b's range isn't
-    #-(posRange) to posRange, instead, it is the primes from
-    #2 to posRange.
+    #Since the result needs to be prime, and n needs to start
+    # at 0, and b needs to be prime when n = 0, the b's range 
+    #isn't -(posRange) to posRange, instead, it is the primes 
+    #from 2 to posRange.
     possibleBs = SoE(posRange)
     
     #Solve the problem
@@ -67,6 +68,8 @@ def PoC(posRange):
             #So this check saves us some work below
             if not isPrime(1 + a + b):
                 continue
+            #Since we know it's prime when n is 0 or 1, 
+            #we start at n = 2
             n = 2
             function = n**2 + a * n + b
             while isPrime(function):
