@@ -32,8 +32,7 @@ def solve(limit):
     #Update sieves with the primes raised to the correct exponent
     for i in range(4, 1, -1):
         primes.append(SoE(int(limit**(1 / float(i)))))
-        for j in range(len(primes[-1])):
-            primes[-1][j] = primes[-1][j]**i
+        primes[-1] = [j**i for j in primes[-1]]
 
     #Solve the problem
     for i in primes[0]:
