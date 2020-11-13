@@ -19,8 +19,12 @@ def P(n):
     
 #Build an isPentagonal function
 #Note: this was derived by using the quadratic
-#formula on the initial equation, (n(3n - 1)) / 2
-#and getting a = 3/2, b = -1/2, and c = -n
+#formula on the initial equation, (N(3N - 1)) / 2
+#where the formula is ax^2 + bx + c. When we simplify
+#our equation into this form, we get 3/2N^2 -N/2 - n = 0
+#and from this we get: a = 3/2, b = -1/2, and c = -n
+#Using these values in the quadratic equation, we get
+#X = (0.5 + (0.25 + 6 * n)**0.5) / 3
 def isP(n):
     ans = (0.5 + (0.25 + (6 * n))**0.5) / 3
     return ans == int(ans)
