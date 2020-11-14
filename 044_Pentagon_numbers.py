@@ -32,10 +32,8 @@ def isP(n):
 #Build a solve function
 def solve():
     #Define variables
-    start             = time.time()
-    j                 = 2
-    notfound          = True
-    ans, J, K, Pj, Pk = 0, 0, 0, 0, 0
+    s                 = time.time()
+    k, notfound       = 2, True
   
     #For every pentagonal, check every
     #pentagonal below it for the given condition.
@@ -47,26 +45,24 @@ def solve():
     #the requirements is necessarily the smallest
     #possible difference, and thus, our answer.
     while notfound:
-        for k in range(j - 1, 0, -1):
-            Pk = P(k)
-            Pj = P(j)
-            D  = abs(Pk - Pj)
-            if isP(Pk + Pj) and isP(D):
-                ans      = str(D)
-                Pj       = str(Pj)
-                Pk       = str(Pk)
-                J        = str(j)
-                K        = str(k)
-                notfound = False
-                break
-        j += 1
+        pk = P(k)        
+        for j in range(k - 1, 0, -1):
+            pj= P(j)
+            if isP(pj + pk):
+                d  = abs(Pk - Pj)
+                if isP(d):
+                    notfound = False
+                    break
+        k += 1
+        
+    d, pj, pk, j, k = str(d), str(pj), str(pk), str(j), str(k)
     
     #Print the results
-    print 'When j = ' + J + ' and k = ' + K + '; P(j) = ' + Pj + ', '
-    print 'P(k) = ' + Pk + ', the sum and difference of P(k) '
+    print 'When j = ' + j + ' and k = ' + k + '; P(j) = ' + pj + ', '
+    print 'P(k) = ' + pk + ', the sum and difference of P(k) '
     print 'and P(j) are pentagonal, and D, which both equals '
-    print '|P(k) - P(j)|, and is minimized, equals ' + ans + '.'
-    print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
+    print '|P(k) - P(j)|, and is minimized, equals ' + d + '.'
+    print 'This took ' + str(time.time() - s) + ' seconds to calculate.'
 
 #Run the program
 solve()
