@@ -13,7 +13,7 @@ import time
 def evenSum(lim):
     ans, fib = 0, [0, 2]
     while fib[1] < lim:
-        temp = fib[0]
+        temp   = fib[0]
         fib[0] = fib[1]
         fib[1] = 4 * fib[0] + temp
         ans += fib[0]
@@ -37,8 +37,24 @@ lim = 4 * 10**6
 solve(lim)
 
 '''It can be shown that every 3rd number in the Fibonacci sequence is even. The addition of two numbers will 
-only ever result in an even numbers if both numbers are even, or if both numbers are odd. The Fibonacci sequence 
-starts with 0 and 1. The first result is 1, which is odd. The second result is 2 (1 + 1.. two odd numbers being summed), 
+only ever result in an even number if both numbers are even, or if both numbers are odd. The Fibonacci sequence 
+starts with 0 and 1. 
+
+0 (even)
+1 (odd)
+-------------
+1 (0 (even) + 1 (odd), odd)
+2 (1 (odd) + 1 (odd), even)          ....even!
+3 (1 (odd) + 2 (even), odd)
+5 (2 (even) + 3 (odd), odd)
+8 (3 (odd) + 5 (odd), even)          ....even!
+13 (5 (odd) + 8 (even), odd)
+21 (8 (even) + 13 (odd), odd)
+34 (13 (odd) + 21 (odd), even)       ....even!
+...and so on...
+
+
+The first result is 1, which is odd. The second result is 2 (1 + 1.. two odd numbers being summed), 
 an even number. Since the first result was odd, adding 2 to the first result will give us our third result, which is 
 another odd number, in this case 3 (1 + 2). The fourth result will also be odd since it's still utilizing the second
 result (our first even result) and adding it our our third result, which was odd. The fourth result comes to 5 (2 + 3). 
