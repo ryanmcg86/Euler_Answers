@@ -12,19 +12,12 @@ Link: https://projecteuler.net/problem=45'''
 import time
 
 #Build a Triangle function
-def Tri(n):
-    return (n * ((3 * n) - 1)) / 2
-    
-#Build an isPentagonal function
-#Note: this was derived by using the quadratic
-#formula on the initial equation, (n(3n - 1)) / 2
-#and getting a = 3, b = -1, and c = -2n
-def isPen(n):
-    ans = (1 + (1 + (24 * n))**0.5) / 6
-    return ans == int(ans)
+def Pent(n):
+    return (n * ((3 * n) - 1)) // 2
+   
     
 #Build an isHexagonal function
-#Note: this is also derived using the quadratic formula
+#Note: This is derived using the quadratic formula
 def isHex(n):
     ans = (1 + (1 + (8 * n))**0.5) / 4
     return ans == int(ans)
@@ -32,59 +25,31 @@ def isHex(n):
 #Build a solve function
 def solve():
     #Define variables
-    start = time.time()
-    ans   = 0
-    i     = 286
-    while 1:
-        num = Tri(i)
-        if isPen(num) and isHex(num):
-            ans = str(num)
-            i   = str(i)
-            break
+    s           = time.time()
+    i, notFound = 165, True
+    
+    while notFound:
         i += 1
+        #We increment by pentagonal numbers because they have the largest
+        #growth rate, and will therefore get us to the answer as fast as possible.
+        num = Pent(i)
+        #I only check if the number is a hexagonal number because we already
+        #know it's pentagonal, and we also know that by default, all hexagonal
+        #numbers are also triangonal numbers.
+        if isHex(num):
+            notFound = False
     
     #Print the results
-    print 'The next triangle number after T(285) = 40755 that is also '
-    print 'pentagonal and hexagonal is T(' + i + ') = ' + ans + '.'
-    print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
+    print('The next triangle number after 40755 that is also ')
+    print('pentagonal and hexagonal is ' + str(num) + '.')
+    print('This took ' + str(time.time() - start) + ' seconds to calculate.')
 
 #Run the program
 solve()
 
 '''
 The Quadratic Equation is X = (-b +- sqrt(b^2 - 4ac)) / 2a, where a, b, and c are derived from the original equation 
-when converted into the form: ax^2 + bx + c = 0. To figure out what the function for a 'isPentagonal' needs to be, 
-we take the original equation, n(3n−1)/2, and convert it into the correct form:
-
-n(3n - 1) / 2 = x
-(3n^2 - n) / 2 = x
-3n^2/2 - n/2 = x
-3n^2/2 - n/2 - x = 0
-2(3n^2/2) - 2(n/2) - 2(x) = 2(0)
-3n^2 - n - 2x = 0
-
-Then we derive the a, b, and c values from the converted equation:
-
-a = 3
-b = -1
-c = -2x
-
-And finally we apply the quadratic equation using these a, b, and c values:
-
-X = (-b +- sqrt(b^2 - 4ac)) / 2a
-
-X = (-(-1) +- sqrt((-1)^2 - 4(3)(-2x))) / 2(3)
-
-X = (1 +- sqrt(1 + 24x)) / 6
-
-This final equation tells us that for any x, if the resultant X is an integer, then x is a pentagonal number. 
-Since pentagonals can only be positive, we only need the version of this equation that adds, so we end up with: 
-
-def isPen(n):
-    ans = (1 + (1 + (24 * n))**0.5) / 6
-    return ans == int(ans)
-
-Following the same logic as above, to figure out what the 'is Hexagonal' function needs to be, we do the following:
+when converted into the form: ax^2 + bx + c = 0. To figure out what the 'is Hexagonal' function needs to be, we do the following:
 
 n(2n−1) = x
 2n^2 - n = x
