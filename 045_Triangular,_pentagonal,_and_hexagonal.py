@@ -14,7 +14,6 @@ import time
 #Build a Triangle function
 def Pent(n):
     return (n * ((3 * n) - 1)) // 2
-   
     
 #Build an isHexagonal function
 #Note: This is derived using the quadratic formula
