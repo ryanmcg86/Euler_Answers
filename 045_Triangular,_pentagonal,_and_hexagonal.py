@@ -18,9 +18,9 @@ def Tri(n):
 #Build an isPentagonal function
 #Note: this was derived by using the quadratic
 #formula on the initial equation, (n(3n - 1)) / 2
-#and getting a = 3/2, b = -1/2, and c = -n
+#and getting a = 3, b = -1, and c = -2n
 def isPen(n):
-    ans = (0.5 + (0.25 + (6 * n))**0.5) / 3
+    ans = (1 + (1 + (24 * n))**0.5) / 6
     return ans == int(ans)
     
 #Build an isHexagonal function
@@ -50,3 +50,63 @@ def solve():
 
 #Run the program
 solve()
+
+'''
+The Quadratic Equation is X = (-b +- sqrt(b^2 - 4ac)) / 2a, where a, b, and c are derived from the original equation 
+when converted into the form: ax^2 + bx + c = 0. To figure out what the function for a 'isPentagonal' needs to be, 
+we take the original equation, n(3n−1)/2, and convert it into the correct form:
+
+n(3n - 1) / 2 = x
+(3n^2 - n) / 2 = x
+3n^2/2 - n/2 = x
+3n^2/2 - n/2 - x = 0
+2(3n^2/2) - 2(n/2) - 2(x) = 2(0)
+3n^2 - n - 2x = 0
+
+Then we derive the a, b, and c values from the converted equation:
+
+a = 3
+b = -1
+c = -2x
+
+And finally we apply the quadratic equation using these a, b, and c values:
+
+X = (-b +- sqrt(b^2 - 4ac)) / 2a
+
+X = (-(-1) +- sqrt((-1)^2 - 4(3)(-2x))) / 2(3)
+
+X = (1 +- sqrt(1 + 24x)) / 6
+
+This final equation tells us that for any x, if the resultant X is an integer, then x is a pentagonal number. 
+Since pentagonals can only be positive, we only need the version of this equation that adds, so we end up with: 
+
+def isPen(n):
+    ans = (1 + (1 + (24 * n))**0.5) / 6
+    return ans == int(ans)
+
+Following the same logic as above, to figure out what the 'is Hexagonal' function needs to be, we do the following:
+
+n(2n−1) = x
+2n^2 - n = x
+2n^2 - n - x = 0
+
+Therefore,
+
+a = 2
+b = -1
+c = -x
+
+Plugging these values into the quadratic equation, we get:
+
+X = (-b +- sqrt(b^2 - 4ac)) / 2a
+
+X = (-(-1) +- sqrt((-1)^2 - 4(2)(-x))) / 2(2)
+
+X = (1 +- sqrt(1 + 8x)) / 4
+
+And since we only need the positive values of this equation, we end up with:
+
+def isHex(n):
+    ans = (1 + (1 + 8 * n)**0.5) / 4
+    return ans == int(ans)
+'''
