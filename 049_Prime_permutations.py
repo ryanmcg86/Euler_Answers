@@ -27,7 +27,7 @@ def isPrime(n):
 def solve():
     #Declare variables
     start = time.time()
-    ps, defaultFound, ans, i = [], False, '', 10**3 + 1
+    ps, ans, i = [], '', 10**3 + 1
     
     #Solve the problem
     while i < 10**4 - (3330 * 2):
