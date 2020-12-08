@@ -11,46 +11,43 @@ Link: https://projecteuler.net/problem=49'''
 #Imports
 import time
 
-#Build an isPrime function
-def isPrime(n):
-    if n < 2: return False
-    if n < 4: return True
-    if n % 2 == 0 or n % 3 == 0: return False
-    i = 5
-    while i * i <= n:
-        if n % i == 0 or n % (i + 2) == 0:
-            return False
-        i += 6
-    return True
+#Build a SoE function
+def SoE(n):
+    prime = [False] * 2 + [True for i in range(n - 1)]
+    ans, p = [], 2
+    while p**2 <= n:
+        if prime[p]:
+            for i in range(p * 2, n + 1, p):
+                prime[i] = False
+    return [i for i in range(n) if prime[i]]
 
 #Build a solve function
 def solve():
     #Declare variables
-    start = time.time()
-    ps, ans, i = [], '', 10**3 + 1
+    s = time.time()
+    diff, diff2, maximum = 3330, 6660, 10**4
+    soe, ans = SoE(maximum), ''
+    search = {i: i for i in soe}
+    begin, end, i = 1000, maximum - diff2, 1
     
     #Solve the problem
-    while i < 10**4 - (3330 * 2):
-        if isPrime(i):
-            if isPrime(i + 3330):
-                if isPrime(i + (3330 * 2)):
-                    ps.append([i, i + 3330, i + (3330 * 2)])
-        if i % 6 == 5: i += 2
-        else: i += 4
-            
-    for i in ps:
-        a = sorted(str(i[0]))
-        b = sorted(str(i[1]))
-        c = sorted(str(i[2]))
-        if a == b == c:
-            temp = str(i[0]) + str(i[1]) + str(i[2])
-            if temp != '148748178147':
-                ans = temp
+    while soe[i] < end:
+        while soe[i] < begin: 
+            i += 1   
+        x, y, z = soe[i], soe[i] + diff, soe[i] + diff2
+        if y in search:
+            if z in search:
+                a, b, c = str(x), str(y), str(z)
+                sa, sb, sc = sorted(a), sorted(b), sorted(c)
+                if sa == sb == sc and x != 1487:
+                    ans = a + b + c
+                    i = len(soe) - 2
+        i += 1
 
     #Print the results
     print('The 12-digit number formed by concatenating ')
     print('the three terms in this sequence is ' + ans + '.')
-    print('This took ' + str(time.time() - start) + ' seconds to calculate.')
+    print('This took ' + str(time.time() - s) + ' seconds to calculate.')
 
 #Run the program
 solve()
