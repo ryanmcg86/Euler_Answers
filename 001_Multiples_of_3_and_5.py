@@ -16,11 +16,11 @@ def SoM(lim, mul):
     return (n * (n + 1) * mul) // 2
 
 #Build an inclusion-exclusion function
-def inex(n, mults):
+def inex(lim, mults):
     num, ans = -1, 0
     for i in range(1, len(mults) + 1):
         for j in co(mults, i):
-            ans += num**(i + 1) * SoM(n, prod(list(j)))
+            ans += num**(i + 1) * SoM(lim, prod(list(j)))
     return ans
 
 #Build a toString function
@@ -36,23 +36,23 @@ def toString(mults):
     return strnums
 
 #Sum of multiples (of 3 and 5) function
-def SumOfMults(n, mults):
+def SumOfMults(lim, mults):
     #Declare variables
     start = time.time()
     strnums = ''
     
     #Solve the problem
-    ans = str(inex(n, mults))
+    ans = str(inex(lim, mults))
             
     #Print the results
     print('The sum of all of the multiples of ')
-    print(toString(mults) + ' below ' + str(n) + ' is ' + ans + '.')
+    print(toString(mults) + ' below ' + str(lim) + ' is ' + ans + '.')
     print('This took ' + str(time.time() - start) + ' seconds to calculate.')
 
 #Run the program
-n = 1000
+lim = 1000
 mults = {3, 5}
-SumOfMults(n, mults)
+SumOfMults(lim, mults)
 
 '''The SoM function runs in O(1) time, so the size of n is irrelevant. 
 
