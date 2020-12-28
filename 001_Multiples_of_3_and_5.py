@@ -54,9 +54,10 @@ lim = 1000
 mults = {3, 5}
 SumOfMults(lim, mults)
 
-'''The SoM function runs in O(1) time, so the size of n is irrelevant. 
+'''The SoM function runs in O(1) time, so the size of the limit is irrelevant. 
 
 The inex function, on the other hand runs 2^(len(mults)) - 1 cycles, or O(2^(mults + 1)), 
 where mults is the number of multiples we're solving for. As a result, regardless of the 
-size of n, the SumOfMults function will be able to find the result in under 60 seconds as 
-long as the number of distinct multiples is 23 or less.'''
+size of the limit, the SumOfMults function will be able to find the result in under 60 
+seconds as long as the number of distinct multiples is around 23 or less, depending
+on the speed of your machine.'''
