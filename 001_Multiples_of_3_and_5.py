@@ -17,10 +17,10 @@ def SoM(lim, mul):
 
 #Build an inclusion-exclusion function
 def inex(lim, mults):
-    num, ans = -1, 0
+    ans = 0
     for i in range(1, len(mults) + 1):
         for j in co(mults, i):
-            ans += num**(i + 1) * SoM(lim, prod(list(j)))
+            ans += (-1)**(i + 1) * SoM(lim, prod(list(j)))
     return ans
 
 #Build a toString function
