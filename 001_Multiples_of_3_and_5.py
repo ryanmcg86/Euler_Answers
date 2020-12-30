@@ -18,9 +18,9 @@ def SoM(lim, mul):
 #Build an inclusion-exclusion function
 def inex(lim, mults):
     ans = 0
-    for i in range(1, len(mults) + 1):
-        for j in co(mults, i):
-            ans += (-1)**(i + 1) * SoM(lim, prod(list(j)))
+    for i in range(len(mults)):
+        for j in co(mults, i + 1):
+            ans += (-1)**i * SoM(lim, prod(list(j)))
     return ans
 
 #Build a toString function
