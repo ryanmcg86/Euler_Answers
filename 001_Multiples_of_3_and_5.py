@@ -28,7 +28,7 @@ def toString(mults):
     if len(mults) == 1: return str(list(mults)[0])
     s = 'and ' + str(list(mults)[-1])
     for i in range(len(mults) - 2, -1, -1):
-        s = str(str(list(mults)[i] + ', ' + s
+        s = str(list(mults)[i]) + ', ' + s
     return s
 
 #Sum of multiples (of 3 and 5) function
