@@ -23,6 +23,22 @@ def inex(lim, mults):
             ans += (-1)**i * SoM(lim, prod(list(j)))
     return ans
 
+#Build a clean-Multiples function
+#This deals with lists of multiples where 1 entry
+#is a multiple of another
+#Example: [3, 6, 8] becomes [3, 8]
+#This is necessary, as the multiples throws off
+#the math of the inclusion-exclusion function
+def cleanMults(mults):
+    m = sorted(mults)
+    x = [m[0]]
+    for i in range(len(m) - 1, 0, -1):
+        multFound = False
+        for j in range(i - 1, -1, -1):
+            if m[i] % m[j] == 0: multFound = True
+        if multFound == False: x.append(m[i])
+    return sorted(x)
+
 #Build a toString function
 def toString(mults):
     if len(mults) == 1: return str(list(mults)[0])
@@ -35,10 +51,10 @@ def toString(mults):
 def SumOfMults(lim, mults):
     #Declare variables
     start = time.time()
-    strnums = ''
+    strnums, m = '', cleanMults(mults)
     
     #Solve the problem
-    ans = str(inex(lim, mults))
+    ans = str(inex(lim, m))
             
     #Print the results
     print('The sum of all of the multiples of ')
