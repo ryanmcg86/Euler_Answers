@@ -26,7 +26,7 @@ def inex(lim, mults):
 #Build a toString function
 def toString(mults):
     if len(mults) == 1: return str(list(mults)[0])
-    s = 'and ' + str(list(mults)[-1])
+    s = 'or ' + str(list(mults)[-1])
     for i in range(len(mults) - 2, -1, -1):
         s = str(list(mults)[i]) + ', ' + s
     return s
