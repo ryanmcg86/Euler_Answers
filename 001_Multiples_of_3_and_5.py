@@ -7,7 +7,7 @@ Link: https://projecteuler.net/problem=1'''
 
 #Imports
 import time
-from math import prod
+from math import prod, gcd
 from itertools import combinations as co
 
 #Build a Sum of Multiples function
@@ -24,21 +24,16 @@ def inex(lim, mults):
     return ans
 
 #Build a clean-Multiples function
-#This deals with lists of multiples where 1 entry
-#is a multiple of another
-#Example: [3, 6, 8] becomes [3, 8]
-#This is necessary, as the multiples throws off
-#the math of the inclusion-exclusion function
 def cleanMults(mults):
-    m = sorted(mults)
-    x = [m[0]]
-    for i in range(len(m) - 1, 0, -1):
-        multFound = False
-        for j in range(i - 1, -1, -1):
-            if m[i] % m[j] == 0: multFound = True
-        if multFound == False: x.append(m[i])
-    return sorted(x)
-
+    divisors = []
+    for d in (1, -1):
+        seen = 1
+        #the list forwards, then the list backwards...
+        for a in mults[::d]:
+            if seen % a != 0: seen = a * seen // gcd(a, seen)
+            else: divisors.append(a)
+    return sorted([a for a in mults if all(d == a or a % d != 0 for d in divisors)])
+            
 #Build a toString function
 def toString(mults):
     if len(mults) == 1: return str(list(mults)[0])
@@ -63,13 +58,22 @@ def SumOfMults(lim, mults):
 
 #Run the program
 lim = 1000
-mults = {3, 5}
+mults = [3, 5]
 SumOfMults(lim, mults)
 
 '''The SoM function runs in O(1) time, so the size of the limit is irrelevant. 
 
-The inex function, on the other hand runs 2^(len(mults)) - 1 cycles, or O(2^(mults + 1)), 
-where mults is the number of multiples we're solving for. As a result, regardless of the 
-size of the limit, the SumOfMults function will be able to find the result in under 60 
-seconds as long as the number of distinct multiples is around 23 or less, depending
-on the speed of your machine.'''
+The inex function, on the other hand, runs 2^(len(mults)) - 1 cycles, or O(2^n), 
+where mults (or n) is the number of multiples we're solving for. As a result, 
+regardless of the size of the limit, the SumOfMults function will be able to find 
+the result in under 60 seconds as long as the number of distinct multiples is around 
+23 or less, depending on the speed of your machine.
+
+The cleanMults function deals with lists of multiples where 1 entry is a multiple of 
+another. Example: [3, 6, 8] needs to become [3, 8], as the multiples throws off
+the math of the inclusion-exclusion function. This runs O(m * n log n) time, where n 
+is the length of the list of multiples, and m is the number of divisors found within
+the given list of multiples. It would be O(m * n), but we sort at the end of the 
+function, which adds an O(n log n) to it. This is a big improvement on O(n^2), 
+which is what it would be if we compared every element in the given list of multiples 
+to every other element in the given list of multiples.'''
