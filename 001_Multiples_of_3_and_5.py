@@ -46,14 +46,13 @@ def toString(mults):
 def SumOfMults(lim, mults):
     #Declare variables
     start = time.time()
-    strnums, m = '', cleanMults(mults)
     
     #Solve the problem
-    ans = str(inex(lim, m))
+    ans, l, m = str(inex(lim, cleanMults(mults))), str(lim), toString(mults)
             
     #Print the results
-    print('The sum of all of the multiples of ')
-    print(toString(mults) + ' below ' + str(lim) + ' is ' + ans + '.')
+    print('The sum of all of the multiples ')
+    print('of ' + m + ' below ' + l + ' is ' + ans + '.')
     print('This took ' + str(time.time() - start) + ' seconds to calculate.')
 
 #Run the program
