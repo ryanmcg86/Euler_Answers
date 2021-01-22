@@ -8,6 +8,7 @@ import time
 
 #Build a factors function
 def factors(num):
+	if num == 2: return [num]
 	factors, p = [], 2
 	while p**2 <= num:
 		if num % p == 0:
