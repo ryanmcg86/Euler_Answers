@@ -22,8 +22,8 @@ def solve(n):
                 maxSum = num
 
     #Print the results
-    print 'When a and b are less than ' + str(n) + 'the maximum digital sum is ' + str(maxSum) + '.'
-    print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
+    print('When a and b are less than ' + str(n) + 'the maximum digital sum is ' + str(maxSum) + '.')
+    print('This took ' + str(time.time() - start) + ' seconds to calculate.')
 
 #Run the program
 n = 100
