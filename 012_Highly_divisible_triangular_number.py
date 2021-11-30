@@ -41,6 +41,7 @@ def tau(n):
             while n % j == 0:
                 exps[-1] += 1
                 n /= j
+        if n == 1: break
     if n > 2: exps.append(1)    
     for i in exps: ans *= (i + 1)
     return ans
