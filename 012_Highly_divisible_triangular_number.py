@@ -49,15 +49,15 @@ def tau(n):
 #Build a function that solves the problem
 def solve(n):
     #Define variables
-    s = time.time()
-    i = 1
+    s, i = time.time(), 1
+    ans = tri(i)
     
     #Solve the problem
-    while tau(tri(i)) <= n:
+    while tau(ans) <= n:
         i += 1
+        ans = tri(i)
       
-    ans = str(int(tri(i)))
-    n = str(n)
+    ans, n = str(ans), str(n)
     
     #Print the results
     print('The value of the first triangle number ')
