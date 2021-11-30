@@ -19,7 +19,6 @@ Link: https://projecteuler.net/problem=12'''
 
 #Imports
 import time
-from math import prod
 
 #Build a function that finds the triangle
 #number for n natural numbers
@@ -29,7 +28,7 @@ def tri(num):
 #Build a function that returns the amount
 #of divisors a given input has
 def tau(n):
-    exps = []
+    exps, ans = [], 1
     for i in range(2, 4):
         if n % i == 0: exps.append(0)
         while n % i == 0:
@@ -43,7 +42,8 @@ def tau(n):
                 exps[-1] += 1
                 n /= j
     if n > 2: exps.append(1)    
-    return prod(i + 1 for i in exps)
+    for i in exps: ans *= (i + 1)
+    return ans
 
 #Build a function that solves the problem
 def solve(num):
