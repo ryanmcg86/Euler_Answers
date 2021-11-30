@@ -22,8 +22,8 @@ import time
 
 #Build a function that finds the triangle
 #number for n natural numbers
-def tri(num):
-    return num * (num + 1) / 2
+def tri(n):
+    return n * (n + 1) // 2
     
 #Build a function that returns the amount
 #of divisors a given input has
@@ -46,23 +46,23 @@ def tau(n):
     return ans
 
 #Build a function that solves the problem
-def solve(num):
+def solve(n):
     #Define variables
-    start = time.time()
+    s = time.time()
     i = 1
     
     #Solve the problem
-    while tau(tri(i)) <= num:
+    while tau(tri(i)) <= n:
         i += 1
       
     ans = str(int(tri(i)))
-    n = str(num)
+    n = str(n)
     
     #Print the results
     print('The value of the first triangle number ')
     print('to have over ' + n + ' divisors is ' + ans + '.')
-    print('This took ' + str(time.time() - start) + ' seconds to calculate.')
+    print('This took ' + str(time.time() - s) + ' seconds to calculate.')
     
 #Find the greatest product of four adjacent numbers in the same direction in the grid
-num = 500
-solve(num)
+n = 500
+solve(n)
