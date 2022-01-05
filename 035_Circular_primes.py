@@ -50,10 +50,13 @@ def isCircular(n):
 #the digits 0, 2, 4, 5, 6, or 8, as none
 #of those can be circular.
 def simplify(sieve):
-    p = [2, 3, 5, 7]
-    for i in range(4, len(sieve)):
+    p = []
+    for i in range(len(sieve)):
         cir, pi = True, sieve[i]
         s = str(pi)
+        if len(s) == 1:
+            p.append(pi)
+            continue;
         a, b, c = s.find('0'), s.find('2'), s.find('4')
         d, e, f = s.find('5'), s.find('6'), s.find('8')
         for j in [a, b, c, d, e, f]:
