@@ -25,7 +25,7 @@ import time
 #Build a fundamental solution function
 def minX(D):
     n1, d1, n2, d2 = 0, 1, 1, 0
-    found = false
+    found = False
     while not found:
         a = n1 + n2
         b = d1 + d2
