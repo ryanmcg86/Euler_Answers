@@ -23,48 +23,49 @@ Link: https://projecteuler.net/problem=66'''
 import time
 
 #Build a fundamental solution function
-def minX(D):
-    n1, d1, n2, d2 = 0, 1, 1, 0
-    found = False
-    while not found:
-        a = n1 + n2
-        b = d1 + d2
-        t = a**2 - D * b**2
-        if t == 1:
-            ansA = a
-            found = True
-        elif t == 0:
-            print 'error'
-            break
-        else:
-            if t < 0:
-                n2 = a
-                d2 = b
-            else:
-                n1 = a
-                n2 = b
-    return ansA
+def solvePell(D):
+    x = int(D**0.5)
+	y, z, r = x, 1, x * 2
+	n1, d1, n2, d2 = 0, 1, 1, 0
+	while True:
+		y = r * z - y
+		z = (D - y**2) // z
+		r = (x + y) // z
+		d1, d2 = d2, d1 + d2 * r
+		n1, n2 = n2, n1 + n2 * r
+		a, b = n2 * x + d2, n2
+		if a**2 - D * b**2 == 1:
+			return [D, a, b]
 
 #Build a solve function
 def solve(num):
     #Define variables
-    start    = time.time()
-    largesti = 0
-    ansD = 0
+    s = time.time()
+    largesti, ansD, f = 0, 0, []
     
     #Solve the problem
-    for i in range(2, num + 1):
+    for i in range(num + 1):
         if i**0.5 == int(i**0.5):
+            f.append([i, 0, 0])
             continue
-        result = minX(i)
+        f.append(solvePell(i))
+        result = f[len(f) - 1][1]
         if result > largesti:
             largesti = result
             ansD = i
+            
+    x, D, y = str(f[ansD][1]), str(f[ansD][0]), str(f[ansD][2])
+    e = str(x + '^2 - ' + D + ' * ' + y + '^2 = 1')
 
     #Print the results
-    print 'The value of D ≤ ' + str(num) + ' in minimal solutions of x for '
-    print 'which the largest value of x is obtained is ' + str(ansD) + '.'
-    print 'This took ' + str(time.time() - start) + ' seconds to calculate.'
+    print('When D ≤ ' + str(num) + ' in minimal solutions of x, the ')
+    print('largest value of x is obtained when D = ' + str(ansD) + '.')
+    print('In this case: ')
+    print('x = ' + x + ', ')
+    print('y = ' + y + ', ')
+    print('and the quadratic Diophantine equation is: ')
+    print(e)
+    print('This took ' + str(time.time() - s) + ' seconds to calculate.')
 
 #Run the program
 num = 100
