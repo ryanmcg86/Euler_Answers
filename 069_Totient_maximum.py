@@ -33,6 +33,35 @@ def isPrime(n):
         i += 6
     return True
 
+#Build a prime factors function that returns the prime factors of a given n value
+def p_factors(n):
+    p_factors = []
+    for i in range(2, 4):
+        if n % i == 0:
+            p_factors.append(i)
+            while n % i == 0:
+                n /= i
+    for i in range(5, int(n**0.5) + 1, 6):
+        plus2 = [i, i + 2]
+        for j in plus2:
+            if n % j == 0:
+                p_factors.append(j)
+                while n % j == 0:
+                    n /= j
+    if n > 2:
+        p_factors.append(n)
+    return p_factors
+
+#Build a function that returns n / phi(n) for a given n
+def n_div_phi_n(n):
+    f = p_factors(n)
+    ans, num, dem = 1, 1, 1
+    for i in f:
+        ans *= i / (i - 1)
+        num *= i
+        dem *= (i - 1)
+    return ans, num, dem
+
 #Build a solve function
 def solve(limit):
     #Define variables
@@ -50,9 +79,14 @@ def solve(limit):
         else:
             i += 1
 
+    f = n_div_phi_n(multPrimes)
+    frac = str(f[1]) + ' / ' + str(f[2])
+
     #Print the results
     print('The value of n <= ' + str(limit) + ' for which ')
-    print('n / phi(n) is a maximum is ' + str(multPrimes) + '.')
+    print('n / phi(n) is a maximum is ' + str(f[1]) + '.')
+    print('phi(' + str(f[1]) + ') = ' + str(f[2]) + ', and ' + frac + ' ')
+    print('approximates to ' + str(f[0]))
     print('It took ' + str(time.time() - start) + ' seconds to find the result.')
 
 #Run the program
