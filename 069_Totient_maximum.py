@@ -51,9 +51,9 @@ def solve(limit):
             i += 1
 
     #Print the results
-    print 'The value of n <= ' + str(limit) + ' for which '
-    print 'n / phi(n) is a maximum is ' + str(multprimes) + '.'
-    print 'It took ' + str(time.time() - start) + ' seconds to find the result.'
+    print('The value of n <= ' + str(limit) + ' for which ')
+    print('n / phi(n) is a maximum is ' + str(multPrimes) + '.')
+    print('It took ' + str(time.time() - start) + ' seconds to find the result.')
 
 #Run the program
 limit = 10**6
