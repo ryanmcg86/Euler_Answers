@@ -72,6 +72,6 @@ the result in under 60 seconds as long as the number of distinct multiples is ar
 The cleanMults function deals with lists of multiples where 1 entry is a multiple of 
 another. Example: [3, 6, 8] needs to become [3, 8], as the multiples throws off
 the math of the inclusion-exclusion function. This runs in O(n) time, where n 
-is the length of the list of multiples. This is a big improvement on O(n^2), which
-is what it would be if we compared every element in the given list of multiples 
+is the length of the list of multiples. This is a big improvement on O(n^2), 
+which is what it would be if we compared every element in the given list of multiples 
 to every other element in the given list of multiples.'''
