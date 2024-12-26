@@ -25,13 +25,13 @@ def inex(lim, mults):
 
 #Build a clean-Multiples function
 def cleanMults(mults):
-    divisors = []
+    divisors = set()
     for d in (1, -1):
         seen = 1
         #the list forwards, then the list backwards...
         for a in mults[::d]:
             if seen % a != 0: seen = a * seen // gcd(a, seen)
-            else: divisors.append(a)
+            else: divisors.add(a)
     return [a for a in mults if all(d == a or a % d != 0 for d in divisors)]
             
 #Build a toString function
