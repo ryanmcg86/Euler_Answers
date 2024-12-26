@@ -32,7 +32,7 @@ def cleanMults(mults):
         for a in mults[::d]:
             if seen % a != 0: seen = a * seen // gcd(a, seen)
             else: divisors.append(a)
-    return sorted([a for a in mults if all(d == a or a % d != 0 for d in divisors)])
+    return [a for a in mults if all(d == a or a % d != 0 for d in divisors)]
             
 #Build a toString function
 def toString(mults):
@@ -71,9 +71,7 @@ the result in under 60 seconds as long as the number of distinct multiples is ar
 
 The cleanMults function deals with lists of multiples where 1 entry is a multiple of 
 another. Example: [3, 6, 8] needs to become [3, 8], as the multiples throws off
-the math of the inclusion-exclusion function. This runs O(m * n log n) time, where n 
-is the length of the list of multiples, and m is the number of divisors found within
-the given list of multiples. It would be O(m * n), but we sort at the end of the 
-function, which adds an O(n log n) to it. This is a big improvement on O(n^2), 
-which is what it would be if we compared every element in the given list of multiples 
+the math of the inclusion-exclusion function. This runs in O(n) time, where n 
+is the length of the list of multiples. This is a big improvement on O(n^2), which
+is what it would be if we compared every element in the given list of multiples 
 to every other element in the given list of multiples.'''
