@@ -25,17 +25,17 @@ import time
 #Build a fundamental solution function
 def solvePell(D):
     x = int(D**0.5)
-	y, z, r = x, 1, x * 2
-	n1, d1, n2, d2 = 0, 1, 1, 0
-	while True:
-		y = r * z - y
-		z = (D - y**2) // z
-		r = (x + y) // z
-		d1, d2 = d2, d1 + d2 * r
-		n1, n2 = n2, n1 + n2 * r
-		a, b = n2 * x + d2, n2
-		if a**2 - D * b**2 == 1:
-			return [D, a, b]
+    y, z, r = x, 1, x * 2
+    n1, d1, n2, d2 = 0, 1, 1, 0
+    while True:
+	    y = r * z - y
+	    z = (D - y**2) // z
+	    r = (x + y) // z
+	    d1, d2 = d2, d1 + d2 * r
+	    n1, n2 = n2, n1 + n2 * r
+	    a, b = n2 * x + d2, n2
+	    if a**2 - D * b**2 == 1:
+                return [D, a, b]
 
 #Build a solve function
 def solve(num):
